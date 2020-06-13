@@ -1,5 +1,5 @@
 //
-//  ARMemoViewController.swift
+//  MemoController.swift
 //  AR-English
 //
 //  Created by Кристина Перегудова on 13.06.2020.
@@ -40,6 +40,22 @@ class ARMemoViewController: UIViewController {
             card.position = [x * 0.1, 0, z * 0.1]
             
             anchor.addChild(card)
+        }
+        
+    }
+    
+    @IBAction func onTap(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: arView)
+        if let card = arView.entity(at: tapLocation) {
+            if card.transform.rotation.angle == .pi {
+                var flipDownTransform = card.transform
+                flipDownTransform.rotation = simd_quatf(angle: 0, axis: [1, 0, 0])
+                card.move(to: flipDownTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+            } else {
+                var flipUpTransform = card.transform
+                flipUpTransform.rotation = simd_quatf(angle: .pi, axis: [1, 0, 0])
+                card.move(to: flipUpTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+            }
         }
     }
 
