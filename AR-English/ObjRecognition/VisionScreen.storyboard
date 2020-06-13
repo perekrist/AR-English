@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Vision Object Recognition View Controller-->
         <scene sceneID="cWG-dp-krP">
             <objects>
-                <viewController storyboardIdentifier="VisionScreen" id="di4-bY-jIA" customClass="ViewController" customModule="AR_English" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VisionScreen" id="di4-bY-jIA" customClass="VisionObjectRecognitionViewController" customModule="AR_English" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dhq-zr-Bdh" userLabel="Preview View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

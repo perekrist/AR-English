@@ -17,6 +17,7 @@
 		CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAB424913B3E00760D5E /* VisionViewController.swift */; };
 		CA60AAB724913B3F00760D5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAB524913B3F00760D5E /* ViewController.swift */; };
 		CA60AABC24913C4100760D5E /* VisionScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA60AABA24913C4100760D5E /* VisionScreen.storyboard */; };
+		CA60AACA2494BA0100760D5E /* VisionObjectRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAC92494BA0100760D5E /* VisionObjectRecognitionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CA60AAB424913B3E00760D5E /* VisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
 		CA60AAB524913B3F00760D5E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA60AABA24913C4100760D5E /* VisionScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VisionScreen.storyboard; sourceTree = "<group>"; };
+		CA60AAC92494BA0100760D5E /* VisionObjectRecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionObjectRecognitionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		CA60AAB824913B7300760D5E /* ObjRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				CA60AAC92494BA0100760D5E /* VisionObjectRecognitionViewController.swift */,
 				CA60AAB524913B3F00760D5E /* ViewController.swift */,
 				CA60AAB424913B3E00760D5E /* VisionViewController.swift */,
 				CA60AABA24913C4100760D5E /* VisionScreen.storyboard */,
@@ -173,6 +176,7 @@
 				CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */,
 				CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */,
 				CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */,
+				CA60AACA2494BA0100760D5E /* VisionObjectRecognitionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
