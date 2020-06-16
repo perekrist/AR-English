@@ -3,33 +3,57 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Memo View Controller-->
         <scene sceneID="jFn-3G-f67">
             <objects>
-                <viewController storyboardIdentifier="Memo" id="fKR-bD-x6N" customClass="ARMemoViewController" customModule="P2B" customModuleProvider="target" sceneMemberID="viewController">
-                    <arView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kOE-3n-WOm">
+                <viewController storyboardIdentifier="Memo" id="fKR-bD-x6N" customClass="ARMemoViewController" customModule="AR_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4bs-5B-YpH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Xjv-Nk-Rtz" appends="YES" id="8EL-EN-F6F"/>
-                        </connections>
-                    </arView>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAW-eV-okR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="e6g-0f-JLk" appends="YES" id="vG7-zw-YJS"/>
+                                </connections>
+                            </arView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pairs: 0 / 8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4p-pD-v8t">
+                                <rect key="frame" x="226" y="44" width="168" height="44.5"/>
+                                <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="0.84639861226180613" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="37"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="JAW-eV-okR" secondAttribute="bottom" id="Imm-bf-73N"/>
+                            <constraint firstItem="JAW-eV-okR" firstAttribute="leading" secondItem="0Dw-zA-bTC" secondAttribute="leading" id="U9h-nB-BIQ"/>
+                            <constraint firstItem="0Dw-zA-bTC" firstAttribute="trailing" secondItem="H4p-pD-v8t" secondAttribute="trailing" constant="20" id="fD3-Lk-O8J"/>
+                            <constraint firstItem="JAW-eV-okR" firstAttribute="trailing" secondItem="0Dw-zA-bTC" secondAttribute="trailing" id="gJw-Hm-Pny"/>
+                            <constraint firstItem="H4p-pD-v8t" firstAttribute="top" secondItem="0Dw-zA-bTC" secondAttribute="top" id="gx0-Om-Prb"/>
+                            <constraint firstItem="JAW-eV-okR" firstAttribute="top" secondItem="4bs-5B-YpH" secondAttribute="top" id="wyL-57-EWp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0Dw-zA-bTC"/>
+                    </view>
                     <connections>
-                        <outlet property="arView" destination="kOE-3n-WOm" id="YHj-iq-VvF"/>
+                        <outlet property="arView" destination="JAW-eV-okR" id="Oih-Oy-XJe"/>
+                        <outlet property="pairsInfo" destination="H4p-pD-v8t" id="Amq-PG-UMS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liv-xJ-SUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Xjv-Nk-Rtz">
+                <tapGestureRecognizer id="e6g-0f-JLk">
                     <connections>
-                        <action selector="onTap:" destination="fKR-bD-x6N" id="vy4-mI-4wz"/>
+                        <action selector="onTap:" destination="fKR-bD-x6N" id="Oaw-EN-1eQ"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-546" y="63"/>
+            <point key="canvasLocation" x="-778.26086956521749" y="-204.24107142857142"/>
         </scene>
     </scenes>
 </document>
