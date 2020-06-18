@@ -9,10 +9,24 @@
 import UIKit
 import RealityKit
 import Combine
+import ARKit
+import MultipeerConnectivity
 
-class ARMemoViewController: UIViewController {
+class ARMemoViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
+    
+    var multipeerSession: MultipeerSession?
+    
+    let coachingOverlay = ARCoachingOverlayView()
+    
+    // A dictionary to map MultiPeer IDs to ARSession ID's.
+    // This is useful for keeping track of which peer created which ARAnchors.
+    var peerSessionIDs = [MCPeerID: String]()
+    
+    var sessionIDObservation: NSKeyValueObservation?
+    
+    var configuration: ARWorldTrackingConfiguration?
     
     // Session Card Pic
     var firstCardPick: Entity? = nil
@@ -27,8 +41,33 @@ class ARMemoViewController: UIViewController {
     
     var words: [String] = ["car", "plane", "solider", "robot", "car", "plane", "solider", "robot"]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        arView.session.delegate = self
+
+        // Turn off ARView's automatically-configured session
+        // to create and set up your own configuration.
+        arView.automaticallyConfigureSession = false
+        
+        configuration = ARWorldTrackingConfiguration()
+
+        // Enable a collaborative session.
+        configuration?.isCollaborationEnabled = true
+        
+        // Enable realistic reflections.
+        configuration?.environmentTexturing = .automatic
+
+        // Begin the session.
+        arView.session.run(configuration!)
+        
+        
+        
+        // Prevent the screen from being dimmed to avoid interrupting the AR experience.
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
+    
+    func placeBoard() {
         // MARK: Add anchorentity to arView scene
         // Create an anchor for a horizontal plane with a minimum area of 20 cm^2
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [0.2 ,0.2])
@@ -116,7 +155,6 @@ class ARMemoViewController: UIViewController {
             print("show card")
             anchor.addChild(card)
         }
-        
     }
     
     // Hit Testing
