@@ -46,7 +46,11 @@ struct ProfileView: View {
                 .padding(.horizontal, 20)
                 
                 HStack {
+<<<<<<< Updated upstream
                                         
+=======
+                    
+>>>>>>> Stashed changes
                     Button(action: {
                         self.index = 0
                     }) {
@@ -105,7 +109,11 @@ struct ProfileView: View {
                             
                             Text("Amelia")
                                 .font(.title)
+<<<<<<< Updated upstream
                                 .padding(.top,10)
+=======
+                                .padding(.top, 10)
+>>>>>>> Stashed changes
                             
                             Text("6 Year")
                                 .font(.body)
@@ -126,7 +134,11 @@ struct ProfileView: View {
                             
                             Text("Max")
                                 .font(.title)
+<<<<<<< Updated upstream
                                 .padding(.top,10)
+=======
+                                .padding(.top, 10)
+>>>>>>> Stashed changes
                             
                             Text("3 Year")
                                 .font(.body)
@@ -141,6 +153,39 @@ struct ProfileView: View {
                     }
                 }
                 
+<<<<<<< Updated upstream
+=======
+                if self.index == 1 {
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            Text("Amelia")
+                                .font(.title)
+                                .padding(.top, 10)
+                            StatisticsView()
+                        }
+                        .padding()
+                        .background(Color.init(UIColor.bg))
+                        .cornerRadius(15)
+                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                        .padding(.vertical)
+                        
+                        VStack {
+                            Text("Max")
+                                .font(.title)
+                                .padding(.top, 10)
+                            StatisticsView()
+                        }
+                        .padding()
+                        .background(Color.init(UIColor.bg))
+                        .cornerRadius(15)
+                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+                        .padding(.vertical)
+                    }
+                }
+                
+>>>>>>> Stashed changes
                 
                 Spacer()
                 
