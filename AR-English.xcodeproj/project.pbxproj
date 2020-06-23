@@ -22,7 +22,7 @@
 		CA60AACA2494BA0100760D5E /* VisionObjectRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAC92494BA0100760D5E /* VisionObjectRecognitionViewController.swift */; };
 		CA60AAE22494E1E400760D5E /* Memo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA60AADB2494E1E400760D5E /* Memo.storyboard */; };
 		CA60AAE32494E1E400760D5E /* ARMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AADC2494E1E400760D5E /* ARMemoViewController.swift */; };
-		CA60AAE52494E25D00760D5E /* MemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAE42494E25D00760D5E /* MemoController.swift */; };
+		CA60AAE52494E25D00760D5E /* MemoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAE42494E25D00760D5E /* MemoContainer.swift */; };
 		CAAB693E24A25FEA00711DCB /* Extentios.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693224A25FEA00711DCB /* Extentios.swift */; };
 		CAAB693F24A25FEA00711DCB /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693324A25FEA00711DCB /* GamesView.swift */; };
 		CAAB694024A25FEA00711DCB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693424A25FEA00711DCB /* ProfileView.swift */; };
@@ -64,7 +64,7 @@
 		CA60AAC92494BA0100760D5E /* VisionObjectRecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionObjectRecognitionViewController.swift; sourceTree = "<group>"; };
 		CA60AADB2494E1E400760D5E /* Memo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Memo.storyboard; sourceTree = "<group>"; };
 		CA60AADC2494E1E400760D5E /* ARMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARMemoViewController.swift; sourceTree = "<group>"; };
-		CA60AAE42494E25D00760D5E /* MemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoController.swift; sourceTree = "<group>"; };
+		CA60AAE42494E25D00760D5E /* MemoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoContainer.swift; sourceTree = "<group>"; };
 		CAAB693224A25FEA00711DCB /* Extentios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extentios.swift; path = "AR-English/Extentios.swift"; sourceTree = SOURCE_ROOT; };
 		CAAB693324A25FEA00711DCB /* GamesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamesView.swift; path = "AR-English/GamesView.swift"; sourceTree = SOURCE_ROOT; };
 		CAAB693424A25FEA00711DCB /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "AR-English/ProfileView.swift"; sourceTree = SOURCE_ROOT; };
@@ -162,7 +162,7 @@
 				CA2B7EB9249B476300F27825 /* MultipeerSession.swift */,
 				CA60AADC2494E1E400760D5E /* ARMemoViewController.swift */,
 				CA60AADB2494E1E400760D5E /* Memo.storyboard */,
-				CA60AAE42494E25D00760D5E /* MemoController.swift */,
+				CA60AAE42494E25D00760D5E /* MemoContainer.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
@@ -319,7 +319,7 @@
 				CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */,
 				CAAB693F24A25FEA00711DCB /* GamesView.swift in Sources */,
 				CAAB694424A25FEA00711DCB /* LocationsView.swift in Sources */,
-				CA60AAE52494E25D00760D5E /* MemoController.swift in Sources */,
+				CA60AAE52494E25D00760D5E /* MemoContainer.swift in Sources */,
 				CA60AACA2494BA0100760D5E /* VisionObjectRecognitionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  MemoController.swift
+//  ARMemoViewController.swift
 //  AR-English
 //
 //  Created by Кристина Перегудова on 13.06.2020.

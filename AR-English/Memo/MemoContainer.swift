@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-struct MemoController: UIViewControllerRepresentable {
+struct MemoContainer: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         let storyboard = UIStoryboard(name: "Memo", bundle: Bundle.main)
         let controller = storyboard.instantiateViewController(identifier: "Memo")
