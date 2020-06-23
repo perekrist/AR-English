@@ -38,7 +38,8 @@ struct GamesView: View {
                 
             }
             .sheet(isPresented: self.$isMemoViewPresented) {
-                MemoContainer()
+                EmptyView()
+                //MemoContainer()
             }
         }
         

@@ -35,7 +35,8 @@ struct LocationsView: View {
                 }
             }
             .sheet(isPresented: self.$isVisionPresented) {
-                VisionViewController()
+                EmptyView()
+                //VisionViewController()
             }
         }
     }

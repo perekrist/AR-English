@@ -46,11 +46,6 @@ struct ProfileView: View {
                 .padding(.horizontal, 20)
                 
                 HStack {
-<<<<<<< Updated upstream
-                                        
-=======
-                    
->>>>>>> Stashed changes
                     Button(action: {
                         self.index = 0
                     }) {
@@ -109,11 +104,7 @@ struct ProfileView: View {
                             
                             Text("Amelia")
                                 .font(.title)
-<<<<<<< Updated upstream
-                                .padding(.top,10)
-=======
                                 .padding(.top, 10)
->>>>>>> Stashed changes
                             
                             Text("6 Year")
                                 .font(.body)
@@ -134,11 +125,7 @@ struct ProfileView: View {
                             
                             Text("Max")
                                 .font(.title)
-<<<<<<< Updated upstream
-                                .padding(.top,10)
-=======
-                                .padding(.top, 10)
->>>>>>> Stashed changes
+                            .padding(.top, 10)
                             
                             Text("3 Year")
                                 .font(.body)
@@ -153,8 +140,6 @@ struct ProfileView: View {
                     }
                 }
                 
-<<<<<<< Updated upstream
-=======
                 if self.index == 1 {
                     ScrollView(showsIndicators: false) {
                         VStack {
@@ -184,8 +169,6 @@ struct ProfileView: View {
                         .padding(.vertical)
                     }
                 }
-                
->>>>>>> Stashed changes
                 
                 Spacer()
                 
