@@ -170,6 +170,21 @@ struct ProfileView: View {
                     }
                 }
                 
+                if self.index == 2 {
+                    Spacer()
+                    Button(action: {
+                        UserDefaults.standard.set(false, forKey: "status")
+                        NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
+                    }) {
+                        Text("Log OUT")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 25)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                }
+                
                 Spacer()
                 
                 if self.index == 0 {

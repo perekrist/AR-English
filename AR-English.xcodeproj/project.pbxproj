@@ -65,18 +65,18 @@
 		CA60AADB2494E1E400760D5E /* Memo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Memo.storyboard; sourceTree = "<group>"; };
 		CA60AADC2494E1E400760D5E /* ARMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARMemoViewController.swift; sourceTree = "<group>"; };
 		CA60AAE42494E25D00760D5E /* MemoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoContainer.swift; sourceTree = "<group>"; };
-		CAAB693224A25FEA00711DCB /* Extentios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extentios.swift; path = "AR-English/Extentios.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693324A25FEA00711DCB /* GamesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamesView.swift; path = "AR-English/GamesView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693424A25FEA00711DCB /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "AR-English/ProfileView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordDescriptionView.swift; path = "AR-English/WordDescriptionView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693624A25FEA00711DCB /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = "AR-English/LoginView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693724A25FEA00711DCB /* DictionaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryView.swift; path = "AR-English/DictionaryView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693824A25FEA00711DCB /* LocationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsView.swift; path = "AR-English/LocationsView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693924A25FEA00711DCB /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = "AR-English/RegistrationView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693A24A25FEA00711DCB /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = "AR-English/MainView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693B24A25FEA00711DCB /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsView.swift; path = "AR-English/StatisticsView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693C24A25FEA00711DCB /* TestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsView.swift; path = "AR-English/TestsView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB693D24A25FEA00711DCB /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestView.swift; path = "AR-English/TestView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693224A25FEA00711DCB /* Extentios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extentios.swift; path = "AR-English/View/Auth/Extentios.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693324A25FEA00711DCB /* GamesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamesView.swift; path = "AR-English/View/Child Zone/GamesView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693424A25FEA00711DCB /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "AR-English/View/Parent Zone/ProfileView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordDescriptionView.swift; path = "AR-English/View/Child Zone/WordDescriptionView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693624A25FEA00711DCB /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = "AR-English/View/Auth/LoginView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693724A25FEA00711DCB /* DictionaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryView.swift; path = "AR-English/View/Child Zone/DictionaryView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693824A25FEA00711DCB /* LocationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsView.swift; path = "AR-English/View/Child Zone/LocationsView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693924A25FEA00711DCB /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = "AR-English/View/Auth/RegistrationView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693A24A25FEA00711DCB /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = "AR-English/View/Child Zone/MainView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693B24A25FEA00711DCB /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsView.swift; path = "AR-English/View/Parent Zone/StatisticsView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693C24A25FEA00711DCB /* TestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsView.swift; path = "AR-English/View/Child Zone/TestsView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693D24A25FEA00711DCB /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestView.swift; path = "AR-English/View/Child Zone/TestView.swift"; sourceTree = SOURCE_ROOT; };
 		CAAB694A24A25FF800711DCB /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Test.swift; path = "AR-English/Test.swift"; sourceTree = SOURCE_ROOT; };
 		CAAB694B24A25FF800711DCB /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Word.swift; path = "AR-English/Word.swift"; sourceTree = SOURCE_ROOT; };
 		CAFF60C0249F79190019E8C2 /* Word.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Word.storyboard; sourceTree = "<group>"; };
@@ -118,15 +118,11 @@
 		CA57CD28248E5B0300C9F0AD /* AR-English */ = {
 			isa = PBXGroup;
 			children = (
+				CAAB695124A26D7900711DCB /* ViewModel */,
 				CAAB693124A25FCA00711DCB /* Model */,
 				CAAB693024A25FC400711DCB /* View */,
-				CAFF60C3249F791B0019E8C2 /* models */,
-				CAFF60BF249F788A0019E8C2 /* 3d word */,
-				CA60AAD42494E1C100760D5E /* Memo */,
-				CA60AAB824913B7300760D5E /* ObjRecognition */,
 				CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */,
 				CA57CD2B248E5B0300C9F0AD /* SceneDelegate.swift */,
-				CA57CD2D248E5B0300C9F0AD /* ContentView.swift */,
 				CA57CD2F248E5B0700C9F0AD /* Assets.xcassets */,
 				CA57CD34248E5B0700C9F0AD /* LaunchScreen.storyboard */,
 				CA57CD37248E5B0700C9F0AD /* Info.plist */,
@@ -170,18 +166,10 @@
 		CAAB693024A25FC400711DCB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CAAB693724A25FEA00711DCB /* DictionaryView.swift */,
-				CAAB693224A25FEA00711DCB /* Extentios.swift */,
-				CAAB693324A25FEA00711DCB /* GamesView.swift */,
-				CAAB693824A25FEA00711DCB /* LocationsView.swift */,
-				CAAB693624A25FEA00711DCB /* LoginView.swift */,
-				CAAB693A24A25FEA00711DCB /* MainView.swift */,
-				CAAB693424A25FEA00711DCB /* ProfileView.swift */,
-				CAAB693924A25FEA00711DCB /* RegistrationView.swift */,
-				CAAB693B24A25FEA00711DCB /* StatisticsView.swift */,
-				CAAB693C24A25FEA00711DCB /* TestsView.swift */,
-				CAAB693D24A25FEA00711DCB /* TestView.swift */,
-				CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */,
+				CAAB695024A26CFC00711DCB /* Child Zone */,
+				CAAB694F24A26CF400711DCB /* Parent Zone */,
+				CAAB694E24A26CEE00711DCB /* Auth */,
+				CA57CD2D248E5B0300C9F0AD /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,10 +177,54 @@
 		CAAB693124A25FCA00711DCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CAFF60C3249F791B0019E8C2 /* models */,
 				CAAB694A24A25FF800711DCB /* Test.swift */,
 				CAAB694B24A25FF800711DCB /* Word.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CAAB694E24A26CEE00711DCB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB693224A25FEA00711DCB /* Extentios.swift */,
+				CAAB693624A25FEA00711DCB /* LoginView.swift */,
+				CAAB693924A25FEA00711DCB /* RegistrationView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		CAAB694F24A26CF400711DCB /* Parent Zone */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB693424A25FEA00711DCB /* ProfileView.swift */,
+				CAAB693B24A25FEA00711DCB /* StatisticsView.swift */,
+			);
+			path = "Parent Zone";
+			sourceTree = "<group>";
+		};
+		CAAB695024A26CFC00711DCB /* Child Zone */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB693A24A25FEA00711DCB /* MainView.swift */,
+				CAAB693724A25FEA00711DCB /* DictionaryView.swift */,
+				CAAB693324A25FEA00711DCB /* GamesView.swift */,
+				CAAB693824A25FEA00711DCB /* LocationsView.swift */,
+				CAAB693C24A25FEA00711DCB /* TestsView.swift */,
+				CAAB693D24A25FEA00711DCB /* TestView.swift */,
+				CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */,
+			);
+			path = "Child Zone";
+			sourceTree = "<group>";
+		};
+		CAAB695124A26D7900711DCB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA60AAD42494E1C100760D5E /* Memo */,
+				CA60AAB824913B7300760D5E /* ObjRecognition */,
+				CAFF60BF249F788A0019E8C2 /* 3d word */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CAFF60BF249F788A0019E8C2 /* 3d word */ = {

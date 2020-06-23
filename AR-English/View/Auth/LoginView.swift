@@ -16,6 +16,8 @@ struct LoginView: View {
     @State var alert = false
     @State var error = ""
     
+    @State var status = false
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -56,7 +58,7 @@ struct LoginView: View {
                         .modifier(TextModifier())
                         
                         Button(action: {
-                            //verify input data
+                            self.verify()
                         }) {
                             Text("Login")
                                 .foregroundColor(Color.black.opacity(0.7))
@@ -92,7 +94,9 @@ struct LoginView: View {
                 }.navigationBarItems(trailing:
                     HStack {
                         Spacer()
-                        NavigationLink(destination: Text("Create account")) {
+                        NavigationLink(destination:
+                            RegistrationView()
+                        ) {
                             Text("Create account")
                                 .foregroundColor(.gray)
                                 .padding(.horizontal)
@@ -104,6 +108,13 @@ struct LoginView: View {
             
         }
     }
+    
+    func verify() {
+        UserDefaults.standard.set(true, forKey: "status")
+        NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
+        self.status.toggle()
+    }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {

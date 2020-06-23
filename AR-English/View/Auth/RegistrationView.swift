@@ -14,9 +14,11 @@ struct RegistrationView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var rePassword = ""
-        
+    
     @State var alert = false
     @State var error = ""
+    
+    @State var status = false
     
     var body: some View {
         ZStack {
@@ -72,7 +74,7 @@ struct RegistrationView: View {
                     .modifier(TextModifier())
                     
                     Button(action: {
-                        //register
+                        self.register()
                     }) {
                         Text("Registration")
                             .foregroundColor(Color.black.opacity(0.7))
@@ -84,6 +86,13 @@ struct RegistrationView: View {
                 }.padding(.horizontal, 30)
             }
         }
+    }
+    
+    func register() {
+        UserDefaults.standard.set(true, forKey: "status")
+        NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
+        self.status.toggle()
+        
     }
     
 }
