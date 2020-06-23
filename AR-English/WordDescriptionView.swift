@@ -13,38 +13,39 @@ struct WordDescriptionView: View {
     @Binding var word: Word
     
     var body: some View {
-        VStack(alignment: .center) {
-            Image(word.image)
-                .resizable()
-                .frame(height: 250)
-                .scaledToFit()
-            
-            HStack {
-                Text(word.name)
-                    .font(.largeTitle)
+        NavigationView {
+            VStack(alignment: .center) {
+                Image(word.image)
+                    .resizable()
+                    .frame(height: 250)
+                    .scaledToFit()
                 
-                Text(" - ")
-                    .font(.largeTitle)
+                HStack {
+                    Text(word.name)
+                        .font(.largeTitle)
+                    
+                    Text(" - ")
+                        .font(.largeTitle)
+                    
+                    Text(word.translate)
+                        .font(.largeTitle)
+                }
                 
-                Text(word.translate)
-                    .font(.largeTitle)
-            }
-            
-            Text("Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. ")
-                .padding()
-            
-            Spacer()
-            
-            Button(action: {
+                Text("Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. ")
+                    .padding()
                 
-            }) {
-                Text("Посмотреть слово в AR")
-                    .foregroundColor(.white)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 25)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }.padding()
+                Spacer()
+                
+                NavigationLink(destination: WordContainer()) {
+                    Text("Посмотреть слово в AR")
+                        .foregroundColor(.white)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 25)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding()
+                }
+            }.navigationBarTitle(word.translate)
         }
     }
 }

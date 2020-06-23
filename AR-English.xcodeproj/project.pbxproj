@@ -15,7 +15,6 @@
 		CA57CD30248E5B0700C9F0AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA57CD2F248E5B0700C9F0AD /* Assets.xcassets */; };
 		CA57CD33248E5B0700C9F0AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA57CD32248E5B0700C9F0AD /* Preview Assets.xcassets */; };
 		CA57CD36248E5B0700C9F0AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA57CD34248E5B0700C9F0AD /* LaunchScreen.storyboard */; };
-<<<<<<< HEAD
 		CA57CD46248E5D3600C9F0AD /* ObjectDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD41248E5D3600C9F0AD /* ObjectDetector.mlmodel */; };
 		CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAB424913B3E00760D5E /* VisionViewController.swift */; };
 		CA60AAB724913B3F00760D5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAB524913B3F00760D5E /* ViewController.swift */; };
@@ -24,6 +23,20 @@
 		CA60AAE22494E1E400760D5E /* Memo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA60AADB2494E1E400760D5E /* Memo.storyboard */; };
 		CA60AAE32494E1E400760D5E /* ARMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AADC2494E1E400760D5E /* ARMemoViewController.swift */; };
 		CA60AAE52494E25D00760D5E /* MemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60AAE42494E25D00760D5E /* MemoController.swift */; };
+		CAAB693E24A25FEA00711DCB /* Extentios.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693224A25FEA00711DCB /* Extentios.swift */; };
+		CAAB693F24A25FEA00711DCB /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693324A25FEA00711DCB /* GamesView.swift */; };
+		CAAB694024A25FEA00711DCB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693424A25FEA00711DCB /* ProfileView.swift */; };
+		CAAB694124A25FEA00711DCB /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */; };
+		CAAB694224A25FEA00711DCB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693624A25FEA00711DCB /* LoginView.swift */; };
+		CAAB694324A25FEA00711DCB /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693724A25FEA00711DCB /* DictionaryView.swift */; };
+		CAAB694424A25FEA00711DCB /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693824A25FEA00711DCB /* LocationsView.swift */; };
+		CAAB694524A25FEA00711DCB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693924A25FEA00711DCB /* RegistrationView.swift */; };
+		CAAB694624A25FEA00711DCB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693A24A25FEA00711DCB /* MainView.swift */; };
+		CAAB694724A25FEA00711DCB /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693B24A25FEA00711DCB /* StatisticsView.swift */; };
+		CAAB694824A25FEA00711DCB /* TestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693C24A25FEA00711DCB /* TestsView.swift */; };
+		CAAB694924A25FEA00711DCB /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB693D24A25FEA00711DCB /* TestView.swift */; };
+		CAAB694C24A25FF800711DCB /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB694A24A25FF800711DCB /* Test.swift */; };
+		CAAB694D24A25FF800711DCB /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB694B24A25FF800711DCB /* Word.swift */; };
 		CAFF60C8249F791B0019E8C2 /* Word.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFF60C0249F79190019E8C2 /* Word.storyboard */; };
 		CAFF60CB249F791B0019E8C2 /* plane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = CAFF60C4249F791B0019E8C2 /* plane.usdz */; };
 		CAFF60CC249F791B0019E8C2 /* car.usdz in Resources */ = {isa = PBXBuildFile; fileRef = CAFF60C5249F791B0019E8C2 /* car.usdz */; };
@@ -31,22 +44,6 @@
 		CAFF60CE249F791B0019E8C2 /* robot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = CAFF60C7249F791B0019E8C2 /* robot.usdz */; };
 		CAFF60D0249F79470019E8C2 /* WordContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF60CF249F79470019E8C2 /* WordContainer.swift */; };
 		CAFF60D4249F7A730019E8C2 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF60D3249F7A730019E8C2 /* WordViewController.swift */; };
-=======
-		CAAB691E24A24E2500711DCB /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691224A24E2500711DCB /* DictionaryView.swift */; };
-		CAAB691F24A24E2500711DCB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691324A24E2500711DCB /* LoginView.swift */; };
-		CAAB692024A24E2500711DCB /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691424A24E2500711DCB /* GamesView.swift */; };
-		CAAB692124A24E2500711DCB /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691524A24E2500711DCB /* StatisticsView.swift */; };
-		CAAB692224A24E2500711DCB /* TestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691624A24E2500711DCB /* TestsView.swift */; };
-		CAAB692324A24E2500711DCB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691724A24E2500711DCB /* ProfileView.swift */; };
-		CAAB692424A24E2500711DCB /* Extentios.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691824A24E2500711DCB /* Extentios.swift */; };
-		CAAB692524A24E2500711DCB /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691924A24E2500711DCB /* LocationsView.swift */; };
-		CAAB692624A24E2500711DCB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691A24A24E2500711DCB /* RegistrationView.swift */; };
-		CAAB692724A24E2500711DCB /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691B24A24E2500711DCB /* TestView.swift */; };
-		CAAB692824A24E2500711DCB /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691C24A24E2500711DCB /* WordDescriptionView.swift */; };
-		CAAB692924A24E2500711DCB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB691D24A24E2500711DCB /* MainView.swift */; };
-		CAAB692D24A24E4200711DCB /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB692B24A24E4200711DCB /* Word.swift */; };
-		CAAB692E24A24E4200711DCB /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB692C24A24E4200711DCB /* Test.swift */; };
->>>>>>> Task_4732
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +57,6 @@
 		CA57CD32248E5B0700C9F0AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA57CD35248E5B0700C9F0AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA57CD37248E5B0700C9F0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		CA57CD41248E5D3600C9F0AD /* ObjectDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectDetector.mlmodel; sourceTree = "<group>"; };
 		CA60AAB424913B3E00760D5E /* VisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
 		CA60AAB524913B3F00760D5E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +65,20 @@
 		CA60AADB2494E1E400760D5E /* Memo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Memo.storyboard; sourceTree = "<group>"; };
 		CA60AADC2494E1E400760D5E /* ARMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARMemoViewController.swift; sourceTree = "<group>"; };
 		CA60AAE42494E25D00760D5E /* MemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoController.swift; sourceTree = "<group>"; };
+		CAAB693224A25FEA00711DCB /* Extentios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extentios.swift; path = "AR-English/Extentios.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693324A25FEA00711DCB /* GamesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamesView.swift; path = "AR-English/GamesView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693424A25FEA00711DCB /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "AR-English/ProfileView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordDescriptionView.swift; path = "AR-English/WordDescriptionView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693624A25FEA00711DCB /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = "AR-English/LoginView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693724A25FEA00711DCB /* DictionaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryView.swift; path = "AR-English/DictionaryView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693824A25FEA00711DCB /* LocationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsView.swift; path = "AR-English/LocationsView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693924A25FEA00711DCB /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = "AR-English/RegistrationView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693A24A25FEA00711DCB /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = "AR-English/MainView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693B24A25FEA00711DCB /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsView.swift; path = "AR-English/StatisticsView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693C24A25FEA00711DCB /* TestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsView.swift; path = "AR-English/TestsView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB693D24A25FEA00711DCB /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestView.swift; path = "AR-English/TestView.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB694A24A25FF800711DCB /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Test.swift; path = "AR-English/Test.swift"; sourceTree = SOURCE_ROOT; };
+		CAAB694B24A25FF800711DCB /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Word.swift; path = "AR-English/Word.swift"; sourceTree = SOURCE_ROOT; };
 		CAFF60C0249F79190019E8C2 /* Word.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Word.storyboard; sourceTree = "<group>"; };
 		CAFF60C4249F791B0019E8C2 /* plane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = plane.usdz; sourceTree = "<group>"; };
 		CAFF60C5249F791B0019E8C2 /* car.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = car.usdz; sourceTree = "<group>"; };
@@ -76,22 +86,6 @@
 		CAFF60C7249F791B0019E8C2 /* robot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = robot.usdz; sourceTree = "<group>"; };
 		CAFF60CF249F79470019E8C2 /* WordContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordContainer.swift; sourceTree = "<group>"; };
 		CAFF60D3249F7A730019E8C2 /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
-=======
-		CAAB691224A24E2500711DCB /* DictionaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryView.swift; path = "AR-English/DictionaryView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691324A24E2500711DCB /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = "AR-English/LoginView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691424A24E2500711DCB /* GamesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamesView.swift; path = "AR-English/GamesView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691524A24E2500711DCB /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsView.swift; path = "AR-English/StatisticsView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691624A24E2500711DCB /* TestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsView.swift; path = "AR-English/TestsView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691724A24E2500711DCB /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "AR-English/ProfileView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691824A24E2500711DCB /* Extentios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extentios.swift; path = "AR-English/Extentios.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691924A24E2500711DCB /* LocationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsView.swift; path = "AR-English/LocationsView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691A24A24E2500711DCB /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = "AR-English/RegistrationView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691B24A24E2500711DCB /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestView.swift; path = "AR-English/TestView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691C24A24E2500711DCB /* WordDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordDescriptionView.swift; path = "AR-English/WordDescriptionView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB691D24A24E2500711DCB /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = "AR-English/MainView.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB692B24A24E4200711DCB /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Word.swift; path = "AR-English/Word.swift"; sourceTree = SOURCE_ROOT; };
-		CAAB692C24A24E4200711DCB /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Test.swift; path = "AR-English/Test.swift"; sourceTree = SOURCE_ROOT; };
->>>>>>> Task_4732
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,15 +118,12 @@
 		CA57CD28248E5B0300C9F0AD /* AR-English */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+				CAAB693124A25FCA00711DCB /* Model */,
+				CAAB693024A25FC400711DCB /* View */,
 				CAFF60C3249F791B0019E8C2 /* models */,
 				CAFF60BF249F788A0019E8C2 /* 3d word */,
 				CA60AAD42494E1C100760D5E /* Memo */,
 				CA60AAB824913B7300760D5E /* ObjRecognition */,
-=======
-				CAAB692A24A24E2A00711DCB /* Model */,
-				CAAB691124A24E0400711DCB /* View */,
->>>>>>> Task_4732
 				CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */,
 				CA57CD2B248E5B0300C9F0AD /* SceneDelegate.swift */,
 				CA57CD2D248E5B0300C9F0AD /* ContentView.swift */,
@@ -152,7 +143,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		CA60AAB824913B7300760D5E /* ObjRecognition */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +167,34 @@
 			path = Memo;
 			sourceTree = "<group>";
 		};
+		CAAB693024A25FC400711DCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB693724A25FEA00711DCB /* DictionaryView.swift */,
+				CAAB693224A25FEA00711DCB /* Extentios.swift */,
+				CAAB693324A25FEA00711DCB /* GamesView.swift */,
+				CAAB693824A25FEA00711DCB /* LocationsView.swift */,
+				CAAB693624A25FEA00711DCB /* LoginView.swift */,
+				CAAB693A24A25FEA00711DCB /* MainView.swift */,
+				CAAB693424A25FEA00711DCB /* ProfileView.swift */,
+				CAAB693924A25FEA00711DCB /* RegistrationView.swift */,
+				CAAB693B24A25FEA00711DCB /* StatisticsView.swift */,
+				CAAB693C24A25FEA00711DCB /* TestsView.swift */,
+				CAAB693D24A25FEA00711DCB /* TestView.swift */,
+				CAAB693524A25FEA00711DCB /* WordDescriptionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAAB693124A25FCA00711DCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB694A24A25FF800711DCB /* Test.swift */,
+				CAAB694B24A25FF800711DCB /* Word.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CAFF60BF249F788A0019E8C2 /* 3d word */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,34 +214,6 @@
 				CAFF60C7249F791B0019E8C2 /* robot.usdz */,
 			);
 			path = models;
-=======
-		CAAB691124A24E0400711DCB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CAAB691224A24E2500711DCB /* DictionaryView.swift */,
-				CAAB691824A24E2500711DCB /* Extentios.swift */,
-				CAAB691424A24E2500711DCB /* GamesView.swift */,
-				CAAB691924A24E2500711DCB /* LocationsView.swift */,
-				CAAB691324A24E2500711DCB /* LoginView.swift */,
-				CAAB691D24A24E2500711DCB /* MainView.swift */,
-				CAAB691724A24E2500711DCB /* ProfileView.swift */,
-				CAAB691A24A24E2500711DCB /* RegistrationView.swift */,
-				CAAB691524A24E2500711DCB /* StatisticsView.swift */,
-				CAAB691624A24E2500711DCB /* TestsView.swift */,
-				CAAB691B24A24E2500711DCB /* TestView.swift */,
-				CAAB691C24A24E2500711DCB /* WordDescriptionView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CAAB692A24A24E2A00711DCB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CAAB692C24A24E4200711DCB /* Test.swift */,
-				CAAB692B24A24E4200711DCB /* Word.swift */,
-			);
-			path = Model;
->>>>>>> Task_4732
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,37 +294,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				CA60AAB724913B3F00760D5E /* ViewController.swift in Sources */,
+				CAAB694924A25FEA00711DCB /* TestView.swift in Sources */,
 				CA60AAE32494E1E400760D5E /* ARMemoViewController.swift in Sources */,
+				CAAB694724A25FEA00711DCB /* StatisticsView.swift in Sources */,
 				CAFF60D4249F7A730019E8C2 /* WordViewController.swift in Sources */,
+				CAAB694524A25FEA00711DCB /* RegistrationView.swift in Sources */,
+				CAAB693E24A25FEA00711DCB /* Extentios.swift in Sources */,
 				CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */,
 				CA57CD46248E5D3600C9F0AD /* ObjectDetector.mlmodel in Sources */,
-=======
-				CAAB692224A24E2500711DCB /* TestsView.swift in Sources */,
-				CAAB692D24A24E4200711DCB /* Word.swift in Sources */,
-				CAAB692424A24E2500711DCB /* Extentios.swift in Sources */,
-				CAAB692324A24E2500711DCB /* ProfileView.swift in Sources */,
-				CAAB692E24A24E4200711DCB /* Test.swift in Sources */,
-				CAAB692624A24E2500711DCB /* RegistrationView.swift in Sources */,
-				CAAB692024A24E2500711DCB /* GamesView.swift in Sources */,
-				CAAB692824A24E2500711DCB /* WordDescriptionView.swift in Sources */,
-				CAAB691E24A24E2500711DCB /* DictionaryView.swift in Sources */,
->>>>>>> Task_4732
+				CAAB694624A25FEA00711DCB /* MainView.swift in Sources */,
 				CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */,
-				CAAB692124A24E2500711DCB /* StatisticsView.swift in Sources */,
-				CAAB692524A24E2500711DCB /* LocationsView.swift in Sources */,
+				CAAB694D24A25FF800711DCB /* Word.swift in Sources */,
 				CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */,
-<<<<<<< HEAD
+				CAAB694324A25FEA00711DCB /* DictionaryView.swift in Sources */,
+				CAAB694024A25FEA00711DCB /* ProfileView.swift in Sources */,
 				CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */,
+				CAAB694124A25FEA00711DCB /* WordDescriptionView.swift in Sources */,
 				CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */,
+				CAAB694824A25FEA00711DCB /* TestsView.swift in Sources */,
+				CAAB694224A25FEA00711DCB /* LoginView.swift in Sources */,
+				CAAB694C24A25FF800711DCB /* Test.swift in Sources */,
 				CAFF60D0249F79470019E8C2 /* WordContainer.swift in Sources */,
-=======
-				CAAB691F24A24E2500711DCB /* LoginView.swift in Sources */,
-				CAAB692724A24E2500711DCB /* TestView.swift in Sources */,
-				CAAB692924A24E2500711DCB /* MainView.swift in Sources */,
->>>>>>> Task_4732
 				CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */,
+				CAAB693F24A25FEA00711DCB /* GamesView.swift in Sources */,
+				CAAB694424A25FEA00711DCB /* LocationsView.swift in Sources */,
 				CA60AAE52494E25D00760D5E /* MemoController.swift in Sources */,
 				CA60AACA2494BA0100760D5E /* VisionObjectRecognitionViewController.swift in Sources */,
 			);
