@@ -118,6 +118,9 @@
 		CA57CD28248E5B0300C9F0AD /* AR-English */ = {
 			isa = PBXGroup;
 			children = (
+				CA60AAB824913B7300760D5E /* ObjRecognition */,
+				CAFF60BF249F788A0019E8C2 /* 3d word */,
+				CA60AAD42494E1C100760D5E /* Memo */,
 				CAAB695124A26D7900711DCB /* ViewModel */,
 				CAAB693124A25FCA00711DCB /* Model */,
 				CAAB693024A25FC400711DCB /* View */,
@@ -220,9 +223,6 @@
 		CAAB695124A26D7900711DCB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CA60AAD42494E1C100760D5E /* Memo */,
-				CA60AAB824913B7300760D5E /* ObjRecognition */,
-				CAFF60BF249F788A0019E8C2 /* 3d word */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

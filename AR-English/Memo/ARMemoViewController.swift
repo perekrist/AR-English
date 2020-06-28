@@ -45,37 +45,48 @@ class ARMemoViewController: UIViewController, ARSessionDelegate {
         super.viewDidAppear(animated)
 
         arView.session.delegate = self
+        
+        // Choise single or multiplayer
+        let alert = UIAlertController(title: "Do you want to play alone?", message: "YES - singleplayer, NO - multiplayer", preferredStyle: .alert)
 
-        // Turn off ARView's automatically-configured session
-        // to create and set up your own configuration.
-        arView.automaticallyConfigureSession = false
-        
-        configuration = ARWorldTrackingConfiguration()
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.placeBoard()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+            // Turn off ARView's automatically-configured session
+            // to create and set up your own configuration.
+            self.arView.automaticallyConfigureSession = false
+            
+            self.configuration = ARWorldTrackingConfiguration()
 
-        // Enable a collaborative session.
-        configuration?.isCollaborationEnabled = true
-        
-        // Enable realistic reflections.
-        configuration?.environmentTexturing = .automatic
+            // Enable a collaborative session.
+            self.configuration?.isCollaborationEnabled = true
+            
+            // Enable realistic reflections.
+            self.configuration?.environmentTexturing = .automatic
 
-        // Begin the session.
-        arView.session.run(configuration!)
+            // Begin the session.
+            self.arView.session.run(self.configuration!)
+            
+            // Use key-value observation to monitor your ARSession's identifier.
+            self.sessionIDObservation = self.observe(\.arView.session.identifier, options: [.new]) { object, change in
+                print("SessionID changed to: \(change.newValue!)")
+                // Tell all other peers about your ARSession's changed ID, so
+                // that they can keep track of which ARAnchors are yours.
+                guard let multipeerSession = self.multipeerSession else { return }
+                self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
+            }
+            
+            // Start looking for other players via MultiPeerConnectivity.
+            self.multipeerSession = MultipeerSession(receivedDataHandler: self.receivedData, peerJoinedHandler:
+                self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
+            
+            // Prevent the screen from being dimmed to avoid interrupting the AR experience.
+            UIApplication.shared.isIdleTimerDisabled = true
+        }))
+
+        self.present(alert, animated: true)
         
-        // Use key-value observation to monitor your ARSession's identifier.
-        sessionIDObservation = observe(\.arView.session.identifier, options: [.new]) { object, change in
-            print("SessionID changed to: \(change.newValue!)")
-            // Tell all other peers about your ARSession's changed ID, so
-            // that they can keep track of which ARAnchors are yours.
-            guard let multipeerSession = self.multipeerSession else { return }
-            self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
-        }
-        
-        // Start looking for other players via MultiPeerConnectivity.
-        multipeerSession = MultipeerSession(receivedDataHandler: receivedData, peerJoinedHandler:
-                                            peerJoined, peerLeftHandler: peerLeft, peerDiscoveredHandler: peerDiscovered)
-        
-        // Prevent the screen from being dimmed to avoid interrupting the AR experience.
-        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     func placeBoard() {
