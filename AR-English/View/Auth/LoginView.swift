@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct LoginView: View {
     
     @State private var email = ""
@@ -15,8 +16,8 @@ struct LoginView: View {
     
     @State var alert = false
     @State var error = ""
-    
-    @State var status = false
+        
+    @ObservedObject private var networkViewModel = NetworkViewModel()
     
     var body: some View {
         NavigationView {
@@ -110,9 +111,10 @@ struct LoginView: View {
     }
     
     func verify() {
-        UserDefaults.standard.set(true, forKey: "status")
-        NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
-        self.status.toggle()
+        if self.email != "" && self.password != "" {
+            self.networkViewModel.login(email: self.email, password: self.password)
+        }
+        
     }
     
 }
