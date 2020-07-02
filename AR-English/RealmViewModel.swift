@@ -12,7 +12,7 @@ import RealmSwift
 
 class RealmViewModel: ObservableObject {
     
-    @Published var words: [DBWord] = []
+    @Published var words: [Word] = []
     
     let realm = try! Realm()
     
@@ -27,6 +27,21 @@ class RealmViewModel: ObservableObject {
         
         try! realm.write {
             realm.add(newWord)
+        }
+    }
+    
+    func getWords() {
+        let dbWords = realm.objects(DBWord.self)
+        
+        for (index, word) in dbWords.enumerated() {
+            words.append(Word(id: index,
+                              name: word.name,
+                              translate: word.translate,
+                              image: word.image,
+                              priority: word.priority,
+                              descriptin: word.descriptin,
+                              use: word.use
+                        ))
         }
     }
     
