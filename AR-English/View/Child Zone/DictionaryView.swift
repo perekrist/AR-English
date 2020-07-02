@@ -10,18 +10,18 @@ import SwiftUI
 
 struct DictionaryView: View {
     
-    @State private var words: [Word] = [Word(id: 0, name: "Banana", translate: "Банан", image: "banana", priority: "new"),
-                                        Word(id: 1, name: "Coffee", translate: "Кофе", image: "coffee", priority: "new"),
-                                        Word(id: 2, name: "Green", translate: "Зеленый", image: "green", priority: "new"),
-                                        Word(id: 3, name: "Blue", translate: "Синий", image: "blue", priority: "done"),
-                                        Word(id: 4, name: "Cat", translate: "Кот", image: "cat", priority: "done"),
-                                        Word(id: 5, name: "Dog", translate: "Собака", image: "dog", priority: "done")
+    @State private var words: [Word] = [Word(id: 0, name: "Banana", translate: "Банан", image: "banana", priority: "new", descriptin: "", use: ""),
+                                        Word(id: 1, name: "Coffee", translate: "Кофе", image: "coffee", priority: "new", descriptin: "", use: ""),
+                                        Word(id: 2, name: "Green", translate: "Зеленый", image: "green", priority: "new", descriptin: "", use: ""),
+                                        Word(id: 3, name: "Blue", translate: "Синий", image: "blue", priority: "done", descriptin: "", use: ""),
+                                        Word(id: 4, name: "Cat", translate: "Кот", image: "cat", priority: "done", descriptin: "", use: ""),
+                                        Word(id: 5, name: "Dog", translate: "Собака", image: "dog", priority: "done", descriptin: "", use: "")
     ]
     
     @State private var showWordDescription = false
     @State private var query: String = ""
     
-    @State var word: Word = Word(id: 0, name: "Banana", translate: "Банан", image: "banana", priority: "new")
+    @State var word: Word = Word(id: 0, name: "Banana", translate: "Банан", image: "banana", priority: "new", descriptin: "", use: "")
     
     var body: some View {
         VStack {
