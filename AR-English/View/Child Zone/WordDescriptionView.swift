@@ -21,17 +21,33 @@ struct WordDescriptionView: View {
                     .scaledToFit()
                 
                 HStack {
-                    Text(word.name)
-                        .font(.largeTitle)
                     
-                    Text(" - ")
-                        .font(.largeTitle)
+                    HStack {
+                        Text(word.name)
+                            .font(.largeTitle)
+                        
+                        Text(" - ")
+                            .font(.largeTitle)
+                        
+                        Text(word.translate)
+                            .font(.largeTitle)
+                    }.padding(.horizontal)
                     
-                    Text(word.translate)
-                        .font(.largeTitle)
+                    Spacer()
+                     
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "speaker.3.fill")
+                            .font(.largeTitle)
+                            .padding()
+                    }
                 }
                 
-                Text("Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. Очень полезня информация для ребенка. ")
+                Text("   Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках")
+                    .padding()
+                
+                Text("   Monkeys like to eat bananas - Обезьяны любят есть бананы\n   Bananas are my favorite fruits - Бананы - это мои любимые фрукты\n   Bananas are yellow - Бананы жёлтого цвета")
                     .padding()
                 
                 Spacer()
