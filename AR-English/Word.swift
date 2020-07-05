@@ -14,4 +14,6 @@ struct Word: Identifiable {
     var translate: String
     var image: String
     var priority: String
+    var descriptin: String
+    var use: String
 }

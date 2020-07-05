@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA14F17F24A8E65500A873E4 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */; };
+		CA21509824ADE2FE0061D140 /* DBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21509724ADE2FE0061D140 /* DBWord.swift */; };
 		CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EB9249B476300F27825 /* MultipeerSession.swift */; };
 		CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EBD249B491A00F27825 /* Utilities.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
@@ -44,9 +46,15 @@
 		CAFF60CE249F791B0019E8C2 /* robot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = CAFF60C7249F791B0019E8C2 /* robot.usdz */; };
 		CAFF60D0249F79470019E8C2 /* WordContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF60CF249F79470019E8C2 /* WordContainer.swift */; };
 		CAFF60D4249F7A730019E8C2 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF60D3249F7A730019E8C2 /* WordViewController.swift */; };
+		DA46E6A7824E4641BC6CB2DC /* Pods_AR_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B331A7EFE2442EABCC32888 /* Pods_AR_English.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		320EB6E5EC9E0C993228DE78 /* Pods-AR-English.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.release.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.release.xcconfig"; sourceTree = "<group>"; };
+		7EAF92520AA78BF7908DD6D9 /* Pods-AR-English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.debug.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.debug.xcconfig"; sourceTree = "<group>"; };
+		8B331A7EFE2442EABCC32888 /* Pods_AR_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AR_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmViewModel.swift; path = "AR-English/RealmViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		CA21509724ADE2FE0061D140 /* DBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWord.swift; sourceTree = "<group>"; };
 		CA2B7EB9249B476300F27825 /* MultipeerSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 		CA2B7EBD249B491A00F27825 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,17 +101,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA46E6A7824E4641BC6CB2DC /* Pods_AR_English.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4846608203C1D2365B2D3D20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B331A7EFE2442EABCC32888 /* Pods_AR_English.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63E9E4594ED897E66E57EE2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7EAF92520AA78BF7908DD6D9 /* Pods-AR-English.debug.xcconfig */,
+				320EB6E5EC9E0C993228DE78 /* Pods-AR-English.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CA21509624ADE2E10061D140 /* DBModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA21509724ADE2FE0061D140 /* DBWord.swift */,
+			);
+			path = DBModel;
+			sourceTree = "<group>";
+		};
 		CA57CD1D248E5B0300C9F0AD = {
 			isa = PBXGroup;
 			children = (
 				CA57CD28248E5B0300C9F0AD /* AR-English */,
 				CA57CD27248E5B0300C9F0AD /* Products */,
+				63E9E4594ED897E66E57EE2F /* Pods */,
+				4846608203C1D2365B2D3D20 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +216,7 @@
 		CAAB693124A25FCA00711DCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA21509624ADE2E10061D140 /* DBModel */,
 				CAFF60C3249F791B0019E8C2 /* models */,
 				CAAB694A24A25FF800711DCB /* Test.swift */,
 				CAAB694B24A25FF800711DCB /* Word.swift */,
@@ -223,6 +260,7 @@
 		CAAB695124A26D7900711DCB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -255,9 +293,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA57CD3A248E5B0700C9F0AD /* Build configuration list for PBXNativeTarget "AR-English" */;
 			buildPhases = (
+				9E5E7B7A91846A5818CFD138 /* [CP] Check Pods Manifest.lock */,
 				CA57CD22248E5B0300C9F0AD /* Sources */,
 				CA57CD23248E5B0300C9F0AD /* Frameworks */,
 				CA57CD24248E5B0300C9F0AD /* Resources */,
+				A1827727465D726CF27A406E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -321,11 +361,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9E5E7B7A91846A5818CFD138 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AR-English-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1827727465D726CF27A406E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AR-English/Pods-AR-English-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AR-English/Pods-AR-English-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AR-English/Pods-AR-English-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CA57CD22248E5B0300C9F0AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA14F17F24A8E65500A873E4 /* RealmViewModel.swift in Sources */,
 				CA60AAB724913B3F00760D5E /* ViewController.swift in Sources */,
 				CAAB694924A25FEA00711DCB /* TestView.swift in Sources */,
 				CA60AAE32494E1E400760D5E /* ARMemoViewController.swift in Sources */,
@@ -340,6 +423,7 @@
 				CAAB694D24A25FF800711DCB /* Word.swift in Sources */,
 				CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */,
 				CAAB694324A25FEA00711DCB /* DictionaryView.swift in Sources */,
+				CA21509824ADE2FE0061D140 /* DBWord.swift in Sources */,
 				CAAB694024A25FEA00711DCB /* ProfileView.swift in Sources */,
 				CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */,
 				CAAB694124A25FEA00711DCB /* WordDescriptionView.swift in Sources */,
@@ -486,6 +570,7 @@
 		};
 		CA57CD3B248E5B0700C9F0AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EAF92520AA78BF7908DD6D9 /* Pods-AR-English.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -506,6 +591,7 @@
 		};
 		CA57CD3C248E5B0700C9F0AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 320EB6E5EC9E0C993228DE78 /* Pods-AR-English.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
