@@ -31,6 +31,8 @@ class RealmViewModel: ObservableObject {
     }
     
     func getWords() {
+        //removeAll()
+        words.removeAll()
         let dbWords = realm.objects(DBWord.self)
         
         for (index, word) in dbWords.enumerated() {
@@ -43,6 +45,24 @@ class RealmViewModel: ObservableObject {
                               use: word.use
                         ))
         }
+    }
+    
+    func removeAll() {
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
+    
+    func checkWord(word: String) -> Bool {
+        getWords()
+        for w in words {
+            if w.name == word {
+                print(w.name)
+                return false
+            }
+        }
+        
+        return true
     }
     
     

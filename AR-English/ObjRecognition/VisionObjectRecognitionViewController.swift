@@ -12,6 +12,8 @@ import Vision
 
 class VisionObjectRecognitionViewController: ViewController {
     
+    private var realmViewModel = RealmViewModel()
+    
     private var detectionOverlay: CALayer! = nil
     
     // Vision parts
@@ -61,8 +63,15 @@ class VisionObjectRecognitionViewController: ViewController {
                                                             identifier: topLabelObservation.identifier,
                                                             confidence: topLabelObservation.confidence)
             
-            shapeLayer.addSublayer(textLayer)
-            detectionOverlay.addSublayer(shapeLayer)
+            if topLabelObservation.confidence > 0.8 {
+                shapeLayer.addSublayer(textLayer)
+                detectionOverlay.addSublayer(shapeLayer)
+                
+                if self.realmViewModel.checkWord(word: topLabelObservation.identifier) {
+                    self.realmViewModel.saveWord(word: Word(id: self.realmViewModel.words.count + 1, name: topLabelObservation.identifier, translate: "-", image: "banana", priority: "new", descriptin: "-", use: "-"))
+                }
+                
+            }
         }
         self.updateLayerGeometry()
         CATransaction.commit()
