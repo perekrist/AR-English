@@ -86,8 +86,9 @@ class ARMemoViewController: UIViewController, ARSessionDelegate {
         }))
 
         self.present(alert, animated: true)
-        
     }
+    
+    
     
     func placeBoard() {
         // MARK: Add anchorentity to arView scene
@@ -174,7 +175,6 @@ class ARMemoViewController: UIViewController, ARSessionDelegate {
             card.position = [x * 0.1, 0, z * 0.1]
             
             // Add the card to the anchor
-            print("show card")
             anchor.addChild(card)
         }
     }
@@ -200,13 +200,9 @@ class ARMemoViewController: UIViewController, ARSessionDelegate {
     }
     
     func chackPair() {
-        print("first card check: \(String(describing: firstCardPick?.name ?? "no card"))")
-        print("sccond card check: \(String(describing: secondCardPick?.name ?? "no card"))")
         
         if (firstCardPick?.name == secondCardPick?.name) {
-            print("Pair!!")
             // delay 1 second
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 // remove card
                 self.firstCardPick?.removeFromParent()
@@ -218,6 +214,19 @@ class ARMemoViewController: UIViewController, ARSessionDelegate {
                 
                 self.pairsDone += 1
                 self.pairsInfo.text = "Pairs: \(self.pairsDone) / 8"
+                
+                if self.pairsDone == 8 {
+                    let alert = UIAlertController(title: "You did it!!!", message: "What would you do next?", preferredStyle: .alert)
+
+                    alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: { action in
+                        self.placeBoard()
+                    }))
+                    alert.addAction(UIAlertAction(title: "Exit", style: .default, handler: { action in
+                        
+                    }))
+
+                    self.present(alert, animated: true)
+                }
             }
         } else {
             // clear card piker
