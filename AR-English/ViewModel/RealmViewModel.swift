@@ -14,16 +14,21 @@ class RealmViewModel: ObservableObject {
     
     @Published var words: [Word] = []
     
-    let realm = try! Realm()
+    let config = Realm.Configuration(schemaVersion: 2)
+
     
     func saveWord(word: Word) {
+        let realm = try! Realm(configuration: config)
         let newWord = DBWord()
         newWord.name = word.name
         newWord.translate = word.translate
         newWord.image = word.image
         newWord.priority = word.priority
         newWord.descriptin = word.descriptin
-        newWord.use = word.use
+//        let use = Use()
+//        use.use_case = word.use
+//        use.use_translate = word.use
+        newWord.use = List<Use>()
         
         try! realm.write {
             realm.add(newWord)
@@ -31,6 +36,7 @@ class RealmViewModel: ObservableObject {
     }
     
     func getWords() {
+        let realm = try! Realm(configuration: config)
         //removeAll()
         words.removeAll()
         let dbWords = realm.objects(DBWord.self)
@@ -42,18 +48,20 @@ class RealmViewModel: ObservableObject {
                               image: word.image,
                               priority: word.priority,
                               descriptin: word.descriptin,
-                              use: word.use
+                              use: [("","")]
                         ))
         }
     }
     
     func removeAll() {
+        let realm = try! Realm(configuration: config)
         try! realm.write {
             realm.deleteAll()
         }
     }
     
     func checkWord(word: String) -> Bool {
+        let realm = try! Realm(configuration: config)
         getWords()
         for w in words {
             if w.name == word {

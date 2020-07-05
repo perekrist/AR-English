@@ -15,5 +15,5 @@ struct Word: Identifiable {
     var image: String
     var priority: String
     var descriptin: String
-    var use: String
+    var use: [(String, String)]
 }

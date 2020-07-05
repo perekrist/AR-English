@@ -1,17 +1,26 @@
 {
-    "words": [
+  "words": [
+    {
+      "id": 0,
+      "name": "Banana",
+      "translate": "Банан",
+      "image": "banana",
+      "priority": "new",
+      "descriptin": "Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках",
+      "use": [
         {
-            "id": 0,
-            "name": "Banana",
-            "translate": "Банан",
-            "image": "banana",
-            "priority": "new",
-            "descriptin": "Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках",
-            "use": [
-                "Monkeys like to eat bananas": "Обезьяны любят есть бананы",
-                "Bananas are my favorite fruits": "Бананы - это мои любимые фрукты",
-                "Bananas are yellow": "Бананы жёлтого цвета"
-                ]
+          "use_case": "Monkeys like to eat bananas",
+          "use_translate": "Обезьяны любят есть бананы"
+        },
+        {
+          "use_case": "Bananas are my favorite fruits",
+          "use_translate": "Бананы - это мои любимые фрукты"
+        },
+        {
+          "use_case": "Bananas are yellow",
+          "use_translate": "Бананы жёлтого цвета"
         }
-    ]
+      ]
+    }
+  ]
 }

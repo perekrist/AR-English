@@ -14,56 +14,85 @@ struct WordDescriptionView: View {
     @Binding var word: Word
     let speechService = SpeechService()
     
+    @ObservedObject private var parseViewModel = ParseViewModel()
+    
     var body: some View {
         NavigationView {
-            VStack(alignment: .center) {
-                Image(word.image)
-                    .resizable()
-                    .frame(height: 250)
-                    .scaledToFit()
-                
-                HStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .center) {
+                    Image(word.image)
+                        .resizable()
+                        .frame(height: 250)
+                        .scaledToFit()
                     
                     HStack {
-                        Text(word.name)
-                            .font(.largeTitle)
                         
-                        Text(" - ")
-                            .font(.largeTitle)
+                        HStack {
+                            Text(parseViewModel.word!.name)
+                                .font(.largeTitle)
+                            
+                            Text(" - ")
+                                .font(.largeTitle)
+                            
+                            Text(parseViewModel.word!.translate)
+                                .font(.largeTitle)
+                        }.padding(.horizontal)
                         
-                        Text(word.translate)
-                            .font(.largeTitle)
-                    }.padding(.horizontal)
+                        Spacer()
+                        
+                        Button(action: {
+                            self.speechService.say(phrase: self.parseViewModel.word!.descriptin, language: "ru-RU")
+                        }) {
+                            Image(systemName: "speaker.3.fill")
+                                .font(.largeTitle)
+                                .padding()
+                        }
+                    }
+                    
+                    
+                    Text(parseViewModel.word!.descriptin)
+                        .padding()
+                        .multilineTextAlignment(.center)
+                    
+                    ForEach((0 ..< parseViewModel.word!.use.count)) { i in
+                        HStack {
+                            Button(action: {
+                                self.speechService.say(phrase: self.parseViewModel.word!.use[i].0, language: "en-US")
+                            }) {
+                                Text(self.parseViewModel.word!.use[i].0)
+                                    .padding()
+                                    .multilineTextAlignment(.center)
+                            }.background(Color.gray.opacity(0.3))
+                                .cornerRadius(5)
+                                .padding()
+                            
+                            Text(" - ")
+                            
+                            Button(action: {
+                                self.speechService.say(phrase: self.parseViewModel.word!.use[i].1, language: "ru-RU")
+                            }) {
+                                Text(self.parseViewModel.word!.use[i].1)
+                                    .padding()
+                                    .multilineTextAlignment(.center)
+                            }.background(Color.gray.opacity(0.3))
+                                .cornerRadius(5)
+                                .padding()
+                        }
+                    }
                     
                     Spacer()
-                     
-                    Button(action: {
-                        self.speechService.say(phrase: "   Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках", language: "ru-RU")
-                    }) {
-                        Image(systemName: "speaker.3.fill")
-                            .font(.largeTitle)
+                    
+                    NavigationLink(destination: WordContainer()) {
+                        Text("Посмотреть слово в AR")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 25)
+                            .background(Color.blue)
+                            .cornerRadius(10)
                             .padding()
                     }
                 }
-                
-                Text("   Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках")
-                    .padding()
-                
-                Text("   Monkeys like to eat bananas - Обезьяны любят есть бананы\n   Bananas are my favorite fruits - Бананы - это мои любимые фрукты\n   Bananas are yellow - Бананы жёлтого цвета")
-                    .padding()
-                
-                Spacer()
-                
-                NavigationLink(destination: WordContainer()) {
-                    Text("Посмотреть слово в AR")
-                        .foregroundColor(.white)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 25)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding()
-                }
-            }.navigationBarTitle(word.translate)
+            }.navigationBarTitle(parseViewModel.word!.translate)
         }
     }
 }

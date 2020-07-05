@@ -16,5 +16,10 @@ class DBWord: Object {
     @objc dynamic var image = ""
     @objc dynamic var priority = ""
     @objc dynamic var descriptin = ""
-    @objc dynamic var use = ""
+    var use = List<Use>()
+}
+
+class Use: Object {
+    @objc dynamic var use_case = ""
+    @objc dynamic var use_translate = ""
 }

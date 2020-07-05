@@ -7,5 +7,6 @@ target 'AR-English' do
 
   # Pods for AR-English
 pod 'RealmSwift'
+pod 'SwiftyJSON'
 
 end

@@ -68,7 +68,7 @@ class VisionObjectRecognitionViewController: ViewController {
                 detectionOverlay.addSublayer(shapeLayer)
                 
                 if self.realmViewModel.checkWord(word: topLabelObservation.identifier) {
-                    self.realmViewModel.saveWord(word: Word(id: self.realmViewModel.words.count + 1, name: topLabelObservation.identifier, translate: "-", image: "banana", priority: "new", descriptin: "-", use: "-"))
+                    self.realmViewModel.saveWord(word: Word(id: self.realmViewModel.words.count + 1, name: topLabelObservation.identifier, translate: "-", image: "banana", priority: "new", descriptin: "-", use: []))
                 }
                 
             }
