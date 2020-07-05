@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA2150A924B1F46F0061D140 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150A824B1F46F0061D140 /* words.json */; };
 		CA14F17F24A8E65500A873E4 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */; };
 		CA21509824ADE2FE0061D140 /* DBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21509724ADE2FE0061D140 /* DBWord.swift */; };
 		CA2150A724B1EB820061D140 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150A624B1EB820061D140 /* SpeechService.swift */; };
@@ -359,6 +360,7 @@
 				CA57CD30248E5B0700C9F0AD /* Assets.xcassets in Resources */,
 				CAFF60C8249F791B0019E8C2 /* Word.storyboard in Resources */,
 				CAFF60CD249F791B0019E8C2 /* solider.usdz in Resources */,
+				CA2150A924B1F46F0061D140 /* words.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
