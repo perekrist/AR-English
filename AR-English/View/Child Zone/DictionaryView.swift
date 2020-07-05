@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct DictionaryView: View {
     
@@ -22,7 +23,7 @@ struct DictionaryView: View {
             if self.realmViewModel.words.count > 0 {
                 List(self.realmViewModel.words) { word in
                     HStack {
-                        Image(word.image)
+                        WebImage(url: URL(string: word.image))
                             .resizable()
                             .frame(width: 50, height: 50)
                             .scaledToFit()

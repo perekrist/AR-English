@@ -8,6 +8,7 @@
 
 import SwiftUI
 import AVFoundation
+import SDWebImageSwiftUI
 
 struct WordDescriptionView: View {
     
@@ -18,7 +19,7 @@ struct WordDescriptionView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .center) {
-                    Image(word.image)
+                    WebImage(url: URL(string: word.image))
                         .resizable()
                         .frame(height: 250)
                         .scaledToFit()
