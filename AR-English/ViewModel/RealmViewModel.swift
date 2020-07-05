@@ -25,10 +25,17 @@ class RealmViewModel: ObservableObject {
         newWord.image = word.image
         newWord.priority = word.priority
         newWord.descriptin = word.descriptin
-//        let use = Use()
-//        use.use_case = word.use
-//        use.use_translate = word.use
-        newWord.use = List<Use>()
+        
+        let lst = List<Use>()
+        
+        for i in word.use {
+            let u = Use()
+            u.use_case = i.0
+            u.use_translate = i.1
+            lst.append(u)
+        }
+        
+        newWord.use = lst
         
         try! realm.write {
             realm.add(newWord)
@@ -37,18 +44,22 @@ class RealmViewModel: ObservableObject {
     
     func getWords() {
         let realm = try! Realm(configuration: config)
-        //removeAll()
         words.removeAll()
         let dbWords = realm.objects(DBWord.self)
         
         for (index, word) in dbWords.enumerated() {
+            var use: [(String, String)] = []
+            for i in word.use {
+                use.append((i.use_case, i.use_translate))
+            }
+            
             words.append(Word(id: index,
                               name: word.name,
                               translate: word.translate,
                               image: word.image,
                               priority: word.priority,
                               descriptin: word.descriptin,
-                              use: [("","")]
+                              use: use
                         ))
         }
     }

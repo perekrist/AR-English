@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @State var index = 0
+    @State private var index = 0
+    @ObservedObject private var realmViewModel = RealmViewModel()
     
     var body: some View {
         ZStack {
@@ -171,6 +172,17 @@ struct ProfileView: View {
                 }
                 
                 if self.index == 2 {
+                    Spacer()
+                    Button(action: {
+                        self.realmViewModel.removeAll()
+                    }) {
+                        Text("Remove from db")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 25)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
                     Spacer()
                     Button(action: {
                         UserDefaults.standard.set(false, forKey: "status")

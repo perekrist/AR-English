@@ -14,8 +14,6 @@ struct WordDescriptionView: View {
     @Binding var word: Word
     let speechService = SpeechService()
     
-    @ObservedObject private var parseViewModel = ParseViewModel()
-    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
@@ -28,20 +26,20 @@ struct WordDescriptionView: View {
                     HStack {
                         
                         HStack {
-                            Text(parseViewModel.word!.name)
+                            Text(word.name)
                                 .font(.largeTitle)
                             
                             Text(" - ")
                                 .font(.largeTitle)
                             
-                            Text(parseViewModel.word!.translate)
+                            Text(word.translate)
                                 .font(.largeTitle)
                         }.padding(.horizontal)
                         
                         Spacer()
                         
                         Button(action: {
-                            self.speechService.say(phrase: self.parseViewModel.word!.descriptin, language: "ru-RU")
+                            self.speechService.say(phrase: self.word.descriptin, language: "ru-RU")
                         }) {
                             Image(systemName: "speaker.3.fill")
                                 .font(.largeTitle)
@@ -50,16 +48,16 @@ struct WordDescriptionView: View {
                     }
                     
                     
-                    Text(parseViewModel.word!.descriptin)
+                    Text(word.descriptin)
                         .padding()
                         .multilineTextAlignment(.center)
                     
-                    ForEach((0 ..< parseViewModel.word!.use.count)) { i in
+                    ForEach((0 ..< word.use.count)) { i in
                         HStack {
                             Button(action: {
-                                self.speechService.say(phrase: self.parseViewModel.word!.use[i].0, language: "en-US")
+                                self.speechService.say(phrase: self.word.use[i].0, language: "en-US")
                             }) {
-                                Text(self.parseViewModel.word!.use[i].0)
+                                Text(self.word.use[i].0)
                                     .padding()
                                     .multilineTextAlignment(.center)
                             }.background(Color.gray.opacity(0.3))
@@ -69,9 +67,9 @@ struct WordDescriptionView: View {
                             Text(" - ")
                             
                             Button(action: {
-                                self.speechService.say(phrase: self.parseViewModel.word!.use[i].1, language: "ru-RU")
+                                self.speechService.say(phrase: self.word.use[i].1, language: "ru-RU")
                             }) {
-                                Text(self.parseViewModel.word!.use[i].1)
+                                Text(self.word.use[i].1)
                                     .padding()
                                     .multilineTextAlignment(.center)
                             }.background(Color.gray.opacity(0.3))
@@ -92,7 +90,7 @@ struct WordDescriptionView: View {
                             .padding()
                     }
                 }
-            }.navigationBarTitle(parseViewModel.word!.translate)
+            }.navigationBarTitle(word.translate)
         }
     }
 }

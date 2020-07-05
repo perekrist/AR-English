@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class ParseViewModel: ObservableObject {
     
-    var word: Word?
+    var words: [Word] = []
     
     init() {
         let path = Bundle.main.path(forResource: "words", ofType: "json")
@@ -20,19 +20,21 @@ class ParseViewModel: ObservableObject {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 let json = JSON(jsonResult)
-                var use: [(String, String)] = []
-                for i in json["words"][0]["use"] {
-                    use.append((i.1["use_case"].stringValue, i.1["use_translate"].stringValue)) 
+                for j in json["words"] {
+                    var use: [(String, String)] = []
+                    for i in j.1["use"] {
+                        use.append((i.1["use_case"].stringValue, i.1["use_translate"].stringValue))
+                    }
+                    words.append(Word(id: j.1["id"].intValue,
+                                name: j.1["name"].stringValue,
+                                translate: j.1["translate"].stringValue,
+                                image: j.1["image"].stringValue,
+                                priority: j.1["priority"].stringValue,
+                                descriptin: j.1["descriptin"].stringValue,
+                                use: use))
                 }
-                word = Word(id: json["words"][0]["id"].intValue,
-                            name: json["words"][0]["name"].stringValue,
-                            translate: json["words"][0]["translate"].stringValue,
-                            image: json["words"][0]["image"].stringValue,
-                            priority: json["words"][0]["priority"].stringValue,
-                            descriptin: json["words"][0]["descriptin"].stringValue,
-                            use: use)
             } catch {
-                print(error.localizedDescription)
+                print("ParseViewModel: " + error.localizedDescription)
             }
         }
     }
