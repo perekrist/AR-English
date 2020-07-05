@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct WordDescriptionView: View {
     
     @Binding var word: Word
+    let speechService = SpeechService()
     
     var body: some View {
         NavigationView {
@@ -36,7 +38,7 @@ struct WordDescriptionView: View {
                     Spacer()
                      
                     Button(action: {
-                        
+                        self.speechService.say(phrase: "   Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках", language: "ru-RU")
                     }) {
                         Image(systemName: "speaker.3.fill")
                             .font(.largeTitle)

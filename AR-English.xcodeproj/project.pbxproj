@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA14F17F24A8E65500A873E4 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */; };
 		CA21509824ADE2FE0061D140 /* DBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21509724ADE2FE0061D140 /* DBWord.swift */; };
+		CA2150A724B1EB820061D140 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150A624B1EB820061D140 /* SpeechService.swift */; };
 		CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EB9249B476300F27825 /* MultipeerSession.swift */; };
 		CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EBD249B491A00F27825 /* Utilities.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		8B331A7EFE2442EABCC32888 /* Pods_AR_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AR_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmViewModel.swift; path = "AR-English/RealmViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		CA21509724ADE2FE0061D140 /* DBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWord.swift; sourceTree = "<group>"; };
+		CA2150A624B1EB820061D140 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpeechService.swift; path = "AR-English/SpeechService.swift"; sourceTree = SOURCE_ROOT; };
 		CA2B7EB9249B476300F27825 /* MultipeerSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 		CA2B7EBD249B491A00F27825 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				CA14F17E24A8E65500A873E4 /* RealmViewModel.swift */,
+				CA2150A624B1EB820061D140 /* SpeechService.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				CAAB694324A25FEA00711DCB /* DictionaryView.swift in Sources */,
 				CA21509824ADE2FE0061D140 /* DBWord.swift in Sources */,
 				CAAB694024A25FEA00711DCB /* ProfileView.swift in Sources */,
+				CA2150A724B1EB820061D140 /* SpeechService.swift in Sources */,
 				CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */,
 				CAAB694124A25FEA00711DCB /* WordDescriptionView.swift in Sources */,
 				CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */,
