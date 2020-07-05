@@ -13,6 +13,7 @@ import Vision
 class VisionObjectRecognitionViewController: ViewController {
     
     private var realmViewModel = RealmViewModel()
+    private var parseViewModel = ParseViewModel()
     
     private var detectionOverlay: CALayer! = nil
     
@@ -66,9 +67,12 @@ class VisionObjectRecognitionViewController: ViewController {
             if topLabelObservation.confidence > 0.8 {
                 shapeLayer.addSublayer(textLayer)
                 detectionOverlay.addSublayer(shapeLayer)
-                
                 if self.realmViewModel.checkWord(word: topLabelObservation.identifier) {
-                    self.realmViewModel.saveWord(word: Word(id: self.realmViewModel.words.count + 1, name: topLabelObservation.identifier, translate: "-", image: "banana", priority: "new", descriptin: "-", use: []))
+                    for i in self.parseViewModel.words {
+                        if i.name == topLabelObservation.identifier {
+                            self.realmViewModel.saveWord(word: i)
+                        }
+                    }
                 }
                 
             }

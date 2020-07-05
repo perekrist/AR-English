@@ -4,7 +4,7 @@
       "id": 0,
       "name": "Banana",
       "translate": "Банан",
-      "image": "banana",
+      "image": "https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip",
       "priority": "new",
       "descriptin": "Банан - жёлтый съедобный фрукт, растущий в джунглях и тропиках",
       "use": [
@@ -19,6 +19,60 @@
         {
           "use_case": "Bananas are yellow",
           "use_translate": "Бананы жёлтого цвета"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Coffee",
+      "translate": "Кофе",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG",
+      "priority": "new",
+      "descriptin": "Кофе - это горячий напиток из темно-коричневого порошка",
+      "use": [
+        {
+          "use_case": "My mum drinks coffee every morning",
+          "use_translate": "Моя мама пьет кофе каждое утро"
+        },
+        {
+          "use_case": "I think coffee if better with milk",
+          "use_translate": "Я думаю, что кофе лучше с молоком"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Egg",
+      "translate": "Яйцо",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Egg_upright.jpg",
+      "priority": "new",
+      "descriptin": "Яйцо - это овальный объект с твердой скорлупой, которую производят птицы.",
+      "use": [
+        {
+          "use_case": "I like fried eggs for breakfast",
+          "use_translate": "Я люблю жаренные яйца на завтрак"
+        },
+        {
+          "use_case": "My family paints eggs for Easter every year",
+          "use_translate": "Моя семья красит яйца каждый год на Пасху"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Croissant",
+      "translate": "Круассан",
+      "image": "https://cooking-ez.com/images/recettes/zoom/four/viennoiseries/91-0.jpg",
+      "priority": "new",
+      "descriptin": "Яйцо - это овальный объект с твердой скорлупой, которую производят птицы.",
+      "use": [
+        {
+          "use_case": "I ate the most delicious croissants in my life in Paris",
+          "use_translate": "Самые вкусные круассаны в своей жизни я ела в Париже"
+        },
+        {
+          "use_case": "My favorite croissants are with chocolate",
+          "use_translate": "Мои любимые круассаны с шоколадом"
         }
       ]
     }

@@ -54,6 +54,7 @@ struct DictionaryView: View {
             } else {
                 Text("Find new words in LOCATIONS!")
                     .font(.largeTitle)
+                    .multilineTextAlignment(.center)
             }
         }
         .onAppear {
