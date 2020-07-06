@@ -104,6 +104,10 @@ struct LoginView: View {
                         }
                     }
                 )
+                
+                if self.alert {
+                    ParentErrorView(alert: self.$alert, error: self.$error)
+                }
             }
             
             
@@ -111,8 +115,11 @@ struct LoginView: View {
     }
     
     func verify() {
-        if self.email != "" && self.password != "" {
+        if self.email != "" || self.password != "" {
             self.networkViewModel.login(email: self.email, password: self.password)
+        } else {
+            self.error = "Fields must be not enpty!"
+            self.alert.toggle()
         }
         
     }

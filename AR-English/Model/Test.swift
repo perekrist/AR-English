@@ -15,5 +15,5 @@ struct Test: Identifiable {
     var image: String
     var question: String
     var answers: [String]
-    var correct_answer: Int
+    var correct_answer: String
 }

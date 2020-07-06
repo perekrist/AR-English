@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.0.5)
   - Realm (4.4.1):
     - Realm/Headers (= 4.4.1)
   - Realm/Headers (4.4.1)
@@ -12,12 +13,14 @@ PODS:
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - RealmSwift
   - SDWebImageSwiftUI
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Realm
     - RealmSwift
     - SDWebImage
@@ -25,12 +28,13 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
   RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
   SDWebImageSwiftUI: f1d11beac87e8a2edf08ea73ed1912f482e4d5a3
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: bc803fb7e31ef678885b664a2953345a73d47ddc
+PODFILE CHECKSUM: 7e17d0969218bda49e27a59b4a8d5ce2efcf2b7b
 
 COCOAPODS: 1.9.1

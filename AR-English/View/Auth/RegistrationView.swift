@@ -17,7 +17,7 @@ struct RegistrationView: View {
     
     @State var alert = false
     @State var error = ""
-        
+    
     @ObservedObject private var networkViewModel = NetworkViewModel()
     
     var body: some View {
@@ -85,14 +85,24 @@ struct RegistrationView: View {
                     
                 }.padding(.horizontal, 30)
             }
+            
+            if self.alert {
+                ParentErrorView(alert: self.$alert, error: self.$error)
+            }
         }
     }
     
     func register() {
-        if self.email != "" && self.password != "" && self.rePassword != "" {
+        if self.email != "" || self.password != "" || self.rePassword != "" {
             if self.password == self.rePassword {
                 self.networkViewModel.register(email: self.email, password: self.password)
+            } else {
+                self.error = "Type same password and repassword!"
+                self.alert.toggle()
             }
+        } else {
+            self.error = "Fields must be not enpty!"
+            self.alert.toggle()
         }
         
     }

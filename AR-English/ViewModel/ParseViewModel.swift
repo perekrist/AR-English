@@ -63,7 +63,7 @@ class ParseViewModel: ObservableObject {
                                       image: j.1["image"].stringValue,
                                       question: j.1["question"].stringValue,
                                       answers: answers,
-                                      correct_answer: j.1["correct_answer"].intValue))
+                                      correct_answer: j.1["correct_answer"].stringValue))
                 }
             } catch {
                 print("ParseViewModel(tests): " + error.localizedDescription)

@@ -11,7 +11,7 @@
                 "This is yellow",
                 "This is red"
             ],
-            "correct_answer": 1
+            "correct_answer": "This is yellow"
         }
     ]
 }

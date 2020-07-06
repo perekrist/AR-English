@@ -9,6 +9,6 @@ target 'AR-English' do
 pod 'RealmSwift'
 pod 'SwiftyJSON'
 pod 'SDWebImageSwiftUI'
-
+pod 'Alamofire'
 
 end
