@@ -17,8 +17,8 @@ struct RegistrationView: View {
     
     @State var alert = false
     @State var error = ""
-    
-    @State var status = false
+        
+    @ObservedObject private var networkViewModel = NetworkViewModel()
     
     var body: some View {
         ZStack {
@@ -89,9 +89,11 @@ struct RegistrationView: View {
     }
     
     func register() {
-        UserDefaults.standard.set(true, forKey: "status")
-        NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
-        self.status.toggle()
+        if self.email != "" && self.password != "" && self.rePassword != "" {
+            if self.password == self.rePassword {
+                self.networkViewModel.register(email: self.email, password: self.password)
+            }
+        }
         
     }
     
