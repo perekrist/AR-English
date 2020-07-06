@@ -1,6 +1,6 @@
 //
 //  TestsView.swift
-//  P2B
+//  AR-English
 //
 //  Created by Кристина Перегудова on 03.06.2020.
 //  Copyright © 2020 Кристина Перегудова. All rights reserved.
@@ -9,16 +9,15 @@
 import SwiftUI
 
 struct TestsView: View {
-    @State private var tests: [Test] = [Test(id: 0, difficulty: 2, image: "banana", question: "What is this?", first: "Banana", second: "Orange", third: "Apple", answer: 0),
-                                        Test(id: 0, difficulty: 2, image: "banana", question: "What is this?", first: "Banana", second: "Orange", third: "Apple", answer: 0),
-                                        Test(id: 0, difficulty: 2, image: "banana", question: "What is this?", first: "Banana", second: "Orange", third: "Apple", answer: 0)
-    ]
+    
+    @ObservedObject private var parseViewModel = ParseViewModel()
     
     var body: some View {
         VStack {
-            List(tests) { test in
-                TestView(test: test)
+            ForEach(0 ..< self.parseViewModel.tests.count) { i in
+                TestView(test: self.parseViewModel.tests[i])
             }
+            Spacer()
         }
     }
 }

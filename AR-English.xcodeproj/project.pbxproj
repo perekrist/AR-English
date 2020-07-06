@@ -15,6 +15,7 @@
 		CA2150B324B2180A0061D140 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150B024B2180A0061D140 /* Test.swift */; };
 		CA2150B424B2180A0061D140 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150B124B2180A0061D140 /* Word.swift */; };
 		CA2150B524B2180A0061D140 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150B224B2180A0061D140 /* words.json */; };
+		CA2150B924B2D0A10061D140 /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150B824B2D0A10061D140 /* tests.json */; };
 		CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EB9249B476300F27825 /* MultipeerSession.swift */; };
 		CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EBD249B491A00F27825 /* Utilities.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		CA2150B024B2180A0061D140 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		CA2150B124B2180A0061D140 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		CA2150B224B2180A0061D140 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
+		CA2150B824B2D0A10061D140 /* tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tests.json; sourceTree = "<group>"; };
 		CA2B7EB9249B476300F27825 /* MultipeerSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 		CA2B7EBD249B491A00F27825 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				CA2150B024B2180A0061D140 /* Test.swift */,
+				CA2150B824B2D0A10061D140 /* tests.json */,
 				CA2150B124B2180A0061D140 /* Word.swift */,
 				CA2150B224B2180A0061D140 /* words.json */,
 				CA21509624ADE2E10061D140 /* DBModel */,
@@ -367,6 +370,7 @@
 				CAFF60C8249F791B0019E8C2 /* Word.storyboard in Resources */,
 				CA2150B524B2180A0061D140 /* words.json in Resources */,
 				CAFF60CD249F791B0019E8C2 /* solider.usdz in Resources */,
+				CA2150B924B2D0A10061D140 /* tests.json in Resources */,
 				CA2150A924B1F46F0061D140 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

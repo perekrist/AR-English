@@ -11,10 +11,9 @@ import Foundation
 struct Test: Identifiable {
     var id: Int
     var difficulty: Int
+    var word: String
     var image: String
     var question: String
-    var first: String
-    var second: String
-    var third: String
-    var answer: Int
+    var answers: [String]
+    var correct_answer: Int
 }

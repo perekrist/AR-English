@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LocationsView: View {
     
-    @State private var locations: [String] = ["breakfast", "bathroom", "clothes", "pets", "colors"]
+    @State private var locations: [String] = ["breakfast", "bathroom", "clothes"]
     @State var isVisionPresented = false
     
     var body: some View {

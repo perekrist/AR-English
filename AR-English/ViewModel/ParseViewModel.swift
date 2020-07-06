@@ -12,8 +12,14 @@ import SwiftyJSON
 class ParseViewModel: ObservableObject {
     
     var words: [Word] = []
+    var tests: [Test] = []
     
     init() {
+        parseWords()
+        parseTests()
+    }
+    
+    func parseWords() {
         let path = Bundle.main.path(forResource: "words", ofType: "json")
         if (path != nil) {
             do {
@@ -34,7 +40,33 @@ class ParseViewModel: ObservableObject {
                                 use: use))
                 }
             } catch {
-                print("ParseViewModel: " + error.localizedDescription)
+                print("ParseViewModel(words): " + error.localizedDescription)
+            }
+        }
+    }
+    
+    func parseTests() {
+        let path = Bundle.main.path(forResource: "tests", ofType: "json")
+        if (path != nil) {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                let json = JSON(jsonResult)
+                for j in json["tests"] {
+                    var answers: [String] = []
+                    for i in (0 ..< j.1["answers"].count) {
+                        answers.append(j.1["answers"][i].stringValue)
+                    }
+                    tests.append(Test(id: j.1["id"].intValue,
+                                      difficulty: j.1["difficulty"].intValue,
+                                      word: j.1["word"].stringValue,
+                                      image: j.1["image"].stringValue,
+                                      question: j.1["question"].stringValue,
+                                      answers: answers,
+                                      correct_answer: j.1["correct_answer"].intValue))
+                }
+            } catch {
+                print("ParseViewModel(tests): " + error.localizedDescription)
             }
         }
     }
