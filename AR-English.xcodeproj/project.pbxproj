@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA2150BD24B2F38D0061D140 /* ParentErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150BC24B2F38D0061D140 /* ParentErrorView.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
 		CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD2B248E5B0300C9F0AD /* SceneDelegate.swift */; };
 		CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD2D248E5B0300C9F0AD /* ContentView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA2150BC24B2F38D0061D140 /* ParentErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParentErrorView.swift; path = "AR-English/ParentErrorView.swift"; sourceTree = SOURCE_ROOT; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA57CD2B248E5B0300C9F0AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				CAAB691624A24E2500711DCB /* TestsView.swift */,
 				CAAB691B24A24E2500711DCB /* TestView.swift */,
 				CAAB691C24A24E2500711DCB /* WordDescriptionView.swift */,
+				CA2150BC24B2F38D0061D140 /* ParentErrorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				CAAB692E24A24E4200711DCB /* Test.swift in Sources */,
 				CAAB692624A24E2500711DCB /* RegistrationView.swift in Sources */,
 				CAAB692024A24E2500711DCB /* GamesView.swift in Sources */,
+				CA2150BD24B2F38D0061D140 /* ParentErrorView.swift in Sources */,
 				CAAB692824A24E2500711DCB /* WordDescriptionView.swift in Sources */,
 				CAAB691E24A24E2500711DCB /* DictionaryView.swift in Sources */,
 				CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */,
