@@ -95,51 +95,11 @@ struct ProfileView: View {
                 .padding(.top,25)
                 
                 
-                if self.index == 0 {
-                    HStack(spacing: 12) {
-                        
-                        VStack(spacing: 12) {
-                            Image("child2")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                            
-                            Text("Amelia")
-                                .font(.title)
-                                .padding(.top, 10)
-                            
-                            Text("6 Year")
-                                .font(.body)
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical)
-                        .frame(width: (UIScreen.main.bounds.width - 60) / 2)
-                        .background(Color.init(UIColor.bg))
-                        .cornerRadius(15)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                        
-                        VStack(spacing: 12) {
-                            
-                            Image("child1")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                            
-                            Text("Max")
-                                .font(.title)
-                            .padding(.top, 10)
-                            
-                            Text("3 Year")
-                                .font(.body)
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical)
-                        .frame(width: (UIScreen.main.bounds.width - 60) / 2)
-                        .background(Color.init(UIColor.bg))
-                        .cornerRadius(15)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                    }
-                }
+//                if self.index == 0 {
+//                    HStack(spacing: 12) {
+//                        
+//                    }
+//                }
                 
                 if self.index == 1 {
                     ScrollView(showsIndicators: false) {
