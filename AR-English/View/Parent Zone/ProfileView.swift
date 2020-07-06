@@ -108,31 +108,9 @@ struct ProfileView: View {
                 
                 if self.index == 1 {
                     ScrollView(showsIndicators: false) {
-                        VStack {
-                            Text("Amelia")
-                                .font(.title)
-                                .padding(.top, 10)
-                            StatisticsView()
+                        ForEach(self.realmViewModel.children, id: \.id) {i in
+                            ChildChart(child: i)
                         }
-                        .padding()
-                        .background(Color.init(UIColor.bg))
-                        .cornerRadius(15)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                        .padding(.vertical)
-                        
-                        VStack {
-                            Text("Max")
-                                .font(.title)
-                                .padding(.top, 10)
-                            StatisticsView()
-                        }
-                        .padding()
-                        .background(Color.init(UIColor.bg))
-                        .cornerRadius(15)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                        .padding(.vertical)
                     }
                 }
                 
@@ -140,16 +118,6 @@ struct ProfileView: View {
                     Spacer()
                     Button(action: {
                         self.realmViewModel.removeAll()
-                    }) {
-                        Text("Remove from db")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 25)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    Spacer()
-                    Button(action: {
                         UserDefaults.standard.set(false, forKey: "status")
                         NotificationCenter.default.post(name: NSNotification.Name("status"), object: nil)
                     }) {
@@ -167,14 +135,19 @@ struct ProfileView: View {
                 if self.index == 0 {
                     Button(action: {
                         if self.realmViewModel.children.count < 3 {
-                            self.realmViewModel.saveChild(child: Child(id: 0, name: "Amelia", sex: "man", birthday: 2009))
+                            if self.realmViewModel.children.count == 0 {
+                                self.realmViewModel.saveChild(child: Child(id: 0, name: "Amelia", sex: "woman", birthday: Int.random(in: 2010..<2016)))
+                            } else if self.realmViewModel.children.count == 1 {
+                                self.realmViewModel.saveChild(child: Child(id: 1, name: "Max", sex: "man", birthday: Int.random(in: 2010..<2016)))
+                            } else {
+                                self.realmViewModel.saveChild(child: Child(id: 2, name: "Stefano", sex: "man", birthday: Int.random(in: 2010..<2016)))
+                            }
                             self.realmViewModel.getChildren()
                         } else {
                             self.error = "Only three child can be in one profile!"
                             self.alert.toggle()
                         }
                     }) {
-                        
                         Text("Add CHILD")
                             .foregroundColor(.white)
                             .padding(.vertical, 10)
@@ -186,7 +159,31 @@ struct ProfileView: View {
                 
                 
             }
+            
+            if self.alert {
+                ParentErrorView(alert: self.$alert, error: self.$error)
+            }
         }
+    }
+}
+
+struct ChildChart: View {
+    
+    @State var child: Child
+    
+    var body: some View {
+        VStack {
+            Text(child.name)
+                .font(.title)
+                .padding(.top, 10)
+            StatisticsView()
+        }
+        .padding()
+        .background(Color.init(UIColor.bg))
+        .cornerRadius(15)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
+        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
+        .padding(.vertical)
     }
 }
 
