@@ -13,6 +13,9 @@ struct ProfileView: View {
     @State private var index = 0
     @ObservedObject private var realmViewModel = RealmViewModel()
     
+    @State var alert = false
+    @State var error = ""
+    
     var body: some View {
         ZStack {
             Color.init(UIColor.bg).edgesIgnoringSafeArea(.all)
@@ -96,48 +99,10 @@ struct ProfileView: View {
                 
                 
                 if self.index == 0 {
-                    HStack(spacing: 12) {
-                        
-                        VStack(spacing: 12) {
-                            Image("child2")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                            
-                            Text("Amelia")
-                                .font(.title)
-                                .padding(.top, 10)
-                            
-                            Text("6 Year")
-                                .font(.body)
-                                .foregroundColor(.gray)
+                    ScrollView(showsIndicators: false) {
+                        ForEach(realmViewModel.children, id: \.id) {i in
+                            ChildView(child: i).padding(.horizontal)
                         }
-                        .padding(.vertical)
-                        .frame(width: (UIScreen.main.bounds.width - 60) / 2)
-                        .background(Color.init(UIColor.bg))
-                        .cornerRadius(15)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
-                        
-                        VStack(spacing: 12) {
-                            
-                            Image("child1")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                            
-                            Text("Max")
-                                .font(.title)
-                            .padding(.top, 10)
-                            
-                            Text("3 Year")
-                                .font(.body)
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical)
-                        .frame(width: (UIScreen.main.bounds.width - 60) / 2)
-                        .background(Color.init(UIColor.bg))
-                        .cornerRadius(15)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 8, y: 8)
-                        .shadow(color: Color.white.opacity(0.5), radius: 5, x: -8, y: -8)
                     }
                 }
                 
@@ -201,7 +166,13 @@ struct ProfileView: View {
                 
                 if self.index == 0 {
                     Button(action: {
-                        
+                        if self.realmViewModel.children.count < 3 {
+                            self.realmViewModel.saveChild(child: Child(id: 0, name: "Amelia", sex: "man", birthday: 2009))
+                            self.realmViewModel.getChildren()
+                        } else {
+                            self.error = "Only three child can be in one profile!"
+                            self.alert.toggle()
+                        }
                     }) {
                         
                         Text("Add CHILD")

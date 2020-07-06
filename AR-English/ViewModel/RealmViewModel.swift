@@ -13,8 +13,14 @@ import RealmSwift
 class RealmViewModel: ObservableObject {
     
     @Published var words: [Word] = []
+    @Published var children: [Child] = []
     
     let config = Realm.Configuration(schemaVersion: 2)
+    
+    init() {
+        getWords()
+        getChildren()
+    }
 
     
     func saveWord(word: Word) {
@@ -82,6 +88,32 @@ class RealmViewModel: ObservableObject {
         }
         
         return true
+    }
+    
+    func saveChild(child: Child) {
+        let realm = try! Realm(configuration: config)
+        let newChild = DBChild()
+        newChild.id = child.id
+        newChild.name = child.name
+        newChild.sex = child.sex
+        newChild.birthday = child.birthday
+        
+        try! realm.write {
+            realm.add(newChild)
+        }
+    }
+    
+    func getChildren() {
+        let realm = try! Realm(configuration: config)
+        children.removeAll()
+        let dbChild = realm.objects(DBChild.self)
+        
+        for (index, child) in dbChild.enumerated() {
+            children.append(Child(id: child.id,
+                                  name: child.name,
+                                  sex: child.sex,
+                                  birthday: child.birthday))
+        }
     }
     
     

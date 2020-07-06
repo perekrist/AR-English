@@ -13,21 +13,15 @@
 		CA2150A024ADFE910061D140 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21509E24ADFE910061D140 /* Test.swift */; };
 		CA2150A324ADFECD0061D140 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150A224ADFECD0061D140 /* NetworkViewModel.swift */; };
 		CA2150A924B1F46F0061D140 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		CA2150AB24B2171C0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA2150AE24B217FD0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA2150AF24B217FD0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA2150B324B2180A0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA2150B424B2180A0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA2150B524B2180A0061D140 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		CA2150B924B2D0A10061D140 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		CA2150C724B30EE60061D140 /* ParseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150C424B30EE60061D140 /* ParseViewModel.swift */; };
-		CA2150C824B30EE60061D140 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150C524B30EE60061D140 /* RealmViewModel.swift */; };
-		CA2150C924B30EE60061D140 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150C624B30EE60061D140 /* SpeechService.swift */; };
-		CA2150CE24B30F000061D140 /* DBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150CB24B30F000061D140 /* DBWord.swift */; };
-		CA2150CF24B30F000061D140 /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150CC24B30F000061D140 /* tests.json */; };
-		CA2150D024B30F000061D140 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150CD24B30F000061D140 /* words.json */; };
-		CA2150D224B30F380061D140 /* ParentErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D124B30F380061D140 /* ParentErrorView.swift */; };
-		CA2150D424B30F3F0061D140 /* ChildErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D324B30F3F0061D140 /* ChildErrorView.swift */; };
+		CA2150AB24B2171C0061D140 /* ParseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150AA24B2171C0061D140 /* ParseViewModel.swift */; };
+		CA2150AE24B217FD0061D140 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150AC24B217FD0061D140 /* RealmViewModel.swift */; };
+		CA2150AF24B217FD0061D140 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150AD24B217FD0061D140 /* SpeechService.swift */; };
+		CA2150B324B2180A0061D140 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150B024B2180A0061D140 /* Test.swift */; };
+		CA2150B424B2180A0061D140 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150B124B2180A0061D140 /* Word.swift */; };
+		CA2150B524B2180A0061D140 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150B224B2180A0061D140 /* words.json */; };
+		CA2150D624B319830061D140 /* ChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D524B319830061D140 /* ChildView.swift */; };
+		CA2150D824B319C30061D140 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D724B319C30061D140 /* Child.swift */; };
+		CA2150DA24B31F0F0061D140 /* DBChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D924B31F0F0061D140 /* DBChild.swift */; };
 		CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EB9249B476300F27825 /* MultipeerSession.swift */; };
 		CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EBD249B491A00F27825 /* Utilities.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
@@ -66,20 +60,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09459F71720C852B874D6DD9 /* Pods_AR_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AR_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		24BC377081D49CD33FA5B9EE /* Pods-AR-English.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.release.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.release.xcconfig"; sourceTree = "<group>"; };
-		BDD70F636D7FDDA62EF76D9F /* Pods-AR-English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.debug.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.debug.xcconfig"; sourceTree = "<group>"; };
-		CA21509D24ADFE910061D140 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
-		CA21509E24ADFE910061D140 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		CA2150A224ADFECD0061D140 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
-		CA2150C424B30EE60061D140 /* ParseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseViewModel.swift; sourceTree = "<group>"; };
-		CA2150C524B30EE60061D140 /* RealmViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
-		CA2150C624B30EE60061D140 /* SpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
-		CA2150CB24B30F000061D140 /* DBWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBWord.swift; sourceTree = "<group>"; };
-		CA2150CC24B30F000061D140 /* tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tests.json; sourceTree = "<group>"; };
-		CA2150CD24B30F000061D140 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
-		CA2150D124B30F380061D140 /* ParentErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentErrorView.swift; sourceTree = "<group>"; };
-		CA2150D324B30F3F0061D140 /* ChildErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildErrorView.swift; sourceTree = "<group>"; };
+		320EB6E5EC9E0C993228DE78 /* Pods-AR-English.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.release.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.release.xcconfig"; sourceTree = "<group>"; };
+		7EAF92520AA78BF7908DD6D9 /* Pods-AR-English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.debug.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.debug.xcconfig"; sourceTree = "<group>"; };
+		8B331A7EFE2442EABCC32888 /* Pods_AR_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AR_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA21509724ADE2FE0061D140 /* DBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWord.swift; sourceTree = "<group>"; };
+		CA2150AA24B2171C0061D140 /* ParseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseViewModel.swift; sourceTree = "<group>"; };
+		CA2150AC24B217FD0061D140 /* RealmViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		CA2150AD24B217FD0061D140 /* SpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		CA2150B024B2180A0061D140 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		CA2150B124B2180A0061D140 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		CA2150B224B2180A0061D140 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
+		CA2150D524B319830061D140 /* ChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildView.swift; sourceTree = "<group>"; };
+		CA2150D724B319C30061D140 /* Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
+		CA2150D924B31F0F0061D140 /* DBChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBChild.swift; sourceTree = "<group>"; };
 		CA2B7EB9249B476300F27825 /* MultipeerSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 		CA2B7EBD249B491A00F27825 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,10 +144,8 @@
 		CA2150A124ADFEA60061D140 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CA2150C424B30EE60061D140 /* ParseViewModel.swift */,
-				CA2150C524B30EE60061D140 /* RealmViewModel.swift */,
-				CA2150C624B30EE60061D140 /* SpeechService.swift */,
-				CA2150A224ADFECD0061D140 /* NetworkViewModel.swift */,
+				CA21509724ADE2FE0061D140 /* DBWord.swift */,
+				CA2150D924B31F0F0061D140 /* DBChild.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -250,11 +241,11 @@
 		CAAB693124A25FCA00711DCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA2150CA24B30F000061D140 /* DBModel */,
-				CA2150CC24B30F000061D140 /* tests.json */,
-				CA2150CD24B30F000061D140 /* words.json */,
-				CA21509E24ADFE910061D140 /* Test.swift */,
-				CA21509D24ADFE910061D140 /* Word.swift */,
+				CA2150B024B2180A0061D140 /* Test.swift */,
+				CA2150B124B2180A0061D140 /* Word.swift */,
+				CA2150D724B319C30061D140 /* Child.swift */,
+				CA2150B224B2180A0061D140 /* words.json */,
+				CA21509624ADE2E10061D140 /* DBModel */,
 				CAFF60C3249F791B0019E8C2 /* models */,
 			);
 			path = Model;
@@ -276,6 +267,7 @@
 				CA2150D124B30F380061D140 /* ParentErrorView.swift */,
 				CAAB693424A25FEA00711DCB /* ProfileView.swift */,
 				CAAB693B24A25FEA00711DCB /* StatisticsView.swift */,
+				CA2150D524B319830061D140 /* ChildView.swift */,
 			);
 			path = "Parent Zone";
 			sourceTree = "<group>";
@@ -468,12 +460,15 @@
 				CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */,
 				CA2150A024ADFE910061D140 /* Test.swift in Sources */,
 				CAAB694124A25FEA00711DCB /* WordDescriptionView.swift in Sources */,
-				CA2150B424B2180A0061D140 /* (null) in Sources */,
+				CA2150D624B319830061D140 /* ChildView.swift in Sources */,
+				CA2150B424B2180A0061D140 /* Word.swift in Sources */,
 				CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */,
 				CA2150A324ADFECD0061D140 /* NetworkViewModel.swift in Sources */,
 				CAAB694824A25FEA00711DCB /* TestsView.swift in Sources */,
 				CA2150C724B30EE60061D140 /* ParseViewModel.swift in Sources */,
 				CAAB694224A25FEA00711DCB /* LoginView.swift in Sources */,
+				CA2150DA24B31F0F0061D140 /* DBChild.swift in Sources */,
+				CA2150D824B319C30061D140 /* Child.swift in Sources */,
 				CAFF60D0249F79470019E8C2 /* WordContainer.swift in Sources */,
 				CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */,
 				CAAB693F24A25FEA00711DCB /* GamesView.swift in Sources */,
