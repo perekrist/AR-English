@@ -13,6 +13,9 @@ struct ProfileView: View {
     @State private var index = 0
     @ObservedObject private var realmViewModel = RealmViewModel()
     
+    @State var alert = false
+    @State var error = ""
+    
     var body: some View {
         ZStack {
             Color.init(UIColor.bg).edgesIgnoringSafeArea(.all)
@@ -95,11 +98,13 @@ struct ProfileView: View {
                 .padding(.top,25)
                 
                 
-//                if self.index == 0 {
-//                    HStack(spacing: 12) {
-//                        
-//                    }
-//                }
+                if self.index == 0 {
+                    ScrollView(showsIndicators: false) {
+                        ForEach(realmViewModel.children, id: \.id) {i in
+                            ChildView(child: i).padding(.horizontal)
+                        }
+                    }
+                }
                 
                 if self.index == 1 {
                     ScrollView(showsIndicators: false) {
@@ -161,7 +166,13 @@ struct ProfileView: View {
                 
                 if self.index == 0 {
                     Button(action: {
-                        
+                        if self.realmViewModel.children.count < 3 {
+                            self.realmViewModel.saveChild(child: Child(id: 0, name: "Amelia", sex: "man", birthday: 2009))
+                            self.realmViewModel.getChildren()
+                        } else {
+                            self.error = "Only three child can be in one profile!"
+                            self.alert.toggle()
+                        }
                     }) {
                         
                         Text("Add CHILD")

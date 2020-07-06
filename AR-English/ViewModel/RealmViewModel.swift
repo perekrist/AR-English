@@ -16,6 +16,11 @@ class RealmViewModel: ObservableObject {
     @Published var children: [Child] = []
     
     let config = Realm.Configuration(schemaVersion: 2)
+    
+    init() {
+        getWords()
+        getChildren()
+    }
 
     
     func saveWord(word: Word) {
