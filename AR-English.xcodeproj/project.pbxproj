@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA2150BD24B2F38D0061D140 /* ParentErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150BC24B2F38D0061D140 /* ParentErrorView.swift */; };
+		CA2150BF24B2F58C0061D140 /* ChildErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150BE24B2F58C0061D140 /* ChildErrorView.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
 		CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD2B248E5B0300C9F0AD /* SceneDelegate.swift */; };
 		CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD2D248E5B0300C9F0AD /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		CA2150BC24B2F38D0061D140 /* ParentErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ParentErrorView.swift; path = "AR-English/ParentErrorView.swift"; sourceTree = SOURCE_ROOT; };
+		CA2150BE24B2F58C0061D140 /* ChildErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChildErrorView.swift; path = "AR-English/ChildErrorView.swift"; sourceTree = SOURCE_ROOT; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA57CD2B248E5B0300C9F0AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				CAAB691B24A24E2500711DCB /* TestView.swift */,
 				CAAB691C24A24E2500711DCB /* WordDescriptionView.swift */,
 				CA2150BC24B2F38D0061D140 /* ParentErrorView.swift */,
+				CA2150BE24B2F58C0061D140 /* ChildErrorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				CAAB692524A24E2500711DCB /* LocationsView.swift in Sources */,
 				CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */,
 				CAAB691F24A24E2500711DCB /* LoginView.swift in Sources */,
+				CA2150BF24B2F58C0061D140 /* ChildErrorView.swift in Sources */,
 				CAAB692724A24E2500711DCB /* TestView.swift in Sources */,
 				CAAB692924A24E2500711DCB /* MainView.swift in Sources */,
 				CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */,
