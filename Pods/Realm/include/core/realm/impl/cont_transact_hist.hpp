@@ -28,6 +28,7 @@
 namespace realm {
 
 class Group;
+class BinaryIterator;
 
 namespace _impl {
 
@@ -45,7 +46,7 @@ public:
     /// updated - that is, the mapping is updated to provide full visibility to
     /// the file.
     ///
-    virtual void update_from_ref_and_version(ref_type ref, version_type version) = 0;
+    virtual void update_from_ref_and_version(ref_type, version_type) = 0;
     virtual void update_from_parent(version_type version) = 0;
 
     /// Get all changesets between the specified versions. References to those
@@ -110,22 +111,18 @@ public:
     /// of histories are stored inside the Realm file.
     virtual void set_oldest_bound_version(version_type version) = 0;
 
-    /// Get the list of uncommitted changes accumulated so far in the current
-    /// write transaction.
-    ///
-    /// The callee retains ownership of the referenced memory. The ownership is
-    /// not handed over to the caller.
-    ///
-    /// This function may be called only during a write transaction (prior to
-    /// initiation of commit operation). In that case, the caller may assume that the
-    /// returned memory reference stays valid for the remainder of the transaction (up
-    /// until initiation of the commit operation).
-    virtual BinaryData get_uncommitted_changes() noexcept = 0;
-
     virtual void verify() const = 0;
 
-    void set_updated(bool updated)
+    /// Returns true if all local changes has been integrated on the server.
+    /// The history is effectively clean
+    virtual bool no_pending_local_changes(version_type) const
     {
+        return true;
+    }
+
+    virtual void set_group(Group* group, bool updated = false)
+    {
+        m_group = group;
         m_updated = updated;
     }
 
@@ -136,6 +133,9 @@ public:
             m_updated = true;
         }
     }
+
+protected:
+    Group* m_group = nullptr;
 
 private:
     mutable bool m_updated = false;

@@ -86,6 +86,8 @@ public:
     /// Construct a null reference.
     StringData() noexcept;
 
+    StringData(int) = delete;
+
     /// If \a external_data is 'null', \a data_size must be zero.
     StringData(const char* external_data, size_t data_size) noexcept;
 
@@ -95,12 +97,10 @@ public:
     template <class T, class A>
     operator std::basic_string<char, T, A>() const;
 
-    // StringData does not store data, callers must manage their own strings.
-    template <class T, class A>
-    StringData(const std::basic_string<char, T, A>&&) = delete;
-
     template <class T, class A>
     StringData(const util::Optional<std::basic_string<char, T, A>>&);
+
+    StringData(std::string_view sv);
 
     StringData(const null&) noexcept;
 
@@ -164,6 +164,10 @@ public:
     friend std::basic_ostream<C, T>& operator<<(std::basic_ostream<C, T>&, const StringData&);
 
     explicit operator bool() const noexcept;
+    explicit operator std::string_view() const noexcept
+    {
+        return std::string_view(m_data, m_size);
+    }
 
     /// If the StringData is NULL, the hash is 0. Otherwise, the function
     /// `murmur2_or_cityhash()` is called on the data.
@@ -195,6 +199,12 @@ inline StringData::StringData(const char* external_data, size_t data_size) noexc
     , m_size(data_size)
 {
     REALM_ASSERT_DEBUG(external_data || data_size == 0);
+}
+
+inline StringData::StringData(std::string_view sv)
+    : m_data(sv.data())
+    , m_size(sv.size())
+{
 }
 
 template <class T, class A>
@@ -377,8 +387,13 @@ inline StringData StringData::substr(size_t i) const noexcept
 template <class C, class T>
 inline std::basic_ostream<C, T>& operator<<(std::basic_ostream<C, T>& out, const StringData& d)
 {
-    for (const char* i = d.m_data; i != d.m_data + d.m_size; ++i)
-        out << *i;
+    if (d.is_null()) {
+        out << "<null>";
+    }
+    else {
+        for (const char* i = d.m_data; i != d.m_data + d.m_size; ++i)
+            out << *i;
+    }
     return out;
 }
 

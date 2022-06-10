@@ -17,12 +17,9 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-#import "RLMConstants.h"
+#import <Realm/RLMConstants.h>
 
-@class RLMRealmConfiguration, RLMRealm, RLMObject, RLMSchema, RLMMigration, RLMNotificationToken, RLMThreadSafeReference, RLMAsyncOpenTask;
-struct RLMRealmPrivileges;
-struct RLMClassPrivileges;
-struct RLMObjectPrivileges;
+@class RLMRealmConfiguration, RLMRealm, RLMObject, RLMSchema, RLMMigration, RLMNotificationToken, RLMThreadSafeReference, RLMAsyncOpenTask, RLMSyncSubscriptionSet;
 
 /**
  A callback block for opening Realms asynchronously.
@@ -30,6 +27,9 @@ struct RLMObjectPrivileges;
  Returns the Realm if the open was successful, or an error otherwise.
  */
 typedef void(^RLMAsyncOpenRealmCallback)(RLMRealm * _Nullable realm, NSError * _Nullable error);
+
+/// The Id of the asynchronous transaction.
+typedef unsigned RLMAsyncTransactionId;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,12 +51,12 @@ NS_ASSUME_NONNULL_BEGIN
  the Realm within an `@autoreleasepool {}` and ensure you have no other
  strong references to it.
 
- @warning `RLMRealm` instances are not thread safe and cannot be shared across
- threads or dispatch queues. Trying to do so will cause an exception to be thrown.
- You must call this method on each thread you want
- to interact with the Realm on. For dispatch queues, this means that you must
- call it in each block which is dispatched, as a queue is not guaranteed to run
- all of its blocks on the same thread.
+ @warning Non-frozen `RLMRealm` instances are thread-confined and cannot be
+ shared across threads or dispatch queues. Trying to do so will cause an
+ exception to be thrown. You must call this method on each thread you want to
+ interact with the Realm on. For dispatch queues, this means that you must call
+ it in each block which is dispatched, as a queue is not guaranteed to run all
+ of its blocks on the same thread.
  */
 
 @interface RLMRealm : NSObject
@@ -69,8 +69,8 @@ NS_ASSUME_NONNULL_BEGIN
  The default Realm is used by the `RLMObject` class methods
  which do not take an `RLMRealm` parameter, but is otherwise not special. The
  default Realm is persisted as *default.realm* under the *Documents* directory of
- your Application on iOS, and in your application's *Application Support*
- directory on OS X.
+ your Application on iOS, in your application's *Application Support*
+ directory on macOS, and in the *Cache* directory on tvOS.
 
  The default Realm is created using the default `RLMRealmConfiguration`, which
  can be changed via `+[RLMRealmConfiguration setDefaultConfiguration:]`.
@@ -78,6 +78,27 @@ NS_ASSUME_NONNULL_BEGIN
  @return The default `RLMRealm` instance for the current thread.
  */
 + (instancetype)defaultRealm;
+
+/**
+ Obtains an instance of the default Realm bound to the given queue.
+
+ Rather than being confined to the thread they are opened on, queue-bound
+ RLMRealms are confined to the given queue. They can be accessed from any
+ thread as long as it is from within a block dispatch to the queue, and
+ notifications will be delivered to the queue instead of a thread's run loop.
+
+ Realms can only be confined to a serial queue. Queue-confined RLMRealm
+ instances can be obtained when not on that queue, but attempting to do
+ anything with that instance without first dispatching to the queue will throw
+ an incorrect thread exception.
+
+ The default Realm is created using the default `RLMRealmConfiguration`, which
+ can be changed via `+[RLMRealmConfiguration setDefaultConfiguration:]`.
+
+ @param queue A serial dispatch queue to confine the Realm to.
+ @return The default `RLMRealm` instance for the given queue.
+ */
++ (instancetype)defaultRealmForQueue:(dispatch_queue_t)queue;
 
 /**
  Obtains an `RLMRealm` instance with the given configuration.
@@ -90,6 +111,31 @@ NS_ASSUME_NONNULL_BEGIN
  @return An `RLMRealm` instance.
  */
 + (nullable instancetype)realmWithConfiguration:(RLMRealmConfiguration *)configuration error:(NSError **)error;
+
+/**
+ Obtains an `RLMRealm` instance with the given configuration bound to the given queue.
+
+ Rather than being confined to the thread they are opened on, queue-bound
+ RLMRealms are confined to the given queue. They can be accessed from any
+ thread as long as it is from within a block dispatch to the queue, and
+ notifications will be delivered to the queue instead of a thread's run loop.
+
+ Realms can only be confined to a serial queue. Queue-confined RLMRealm
+ instances can be obtained when not on that queue, but attempting to do
+ anything with that instance without first dispatching to the queue will throw
+ an incorrect thread exception.
+
+ @param configuration A configuration object to use when creating the Realm.
+ @param queue         A serial dispatch queue to confine the Realm to.
+ @param error         If an error occurs, upon return contains an `NSError` object
+                      that describes the problem. If you are not interested in
+                      possible errors, pass in `NULL`.
+
+ @return An `RLMRealm` instance.
+ */
++ (nullable instancetype)realmWithConfiguration:(RLMRealmConfiguration *)configuration
+                                          queue:(nullable dispatch_queue_t)queue
+                                          error:(NSError **)error;
 
 /**
  Obtains an `RLMRealm` instance persisted at a specified file URL.
@@ -109,21 +155,19 @@ NS_ASSUME_NONNULL_BEGIN
  synchronized Realms wait for all remote content available at the time the
  operation began to be downloaded and available locally.
 
+ The Realm passed to the callback function is confined to the callback queue as
+ if `-[RLMRealm realmWithConfiguration:queue:error]` was used.
+
  @param configuration A configuration object to use when opening the Realm.
- @param callbackQueue The dispatch queue on which the callback should be run.
+ @param callbackQueue The serial dispatch queue on which the callback should be run.
  @param callback      A callback block. If the Realm was successfully opened,
                       it will be passed in as an argument.
                       Otherwise, an `NSError` describing what went wrong will be
                       passed to the block instead.
-
- @note The returned Realm is confined to the thread on which it was created.
-       Because GCD does not guarantee that queues will always use the same
-       thread, accessing the returned Realm outside the callback block (even if
-       accessed from `callbackQueue`) is unsafe.
  */
 + (RLMAsyncOpenTask *)asyncOpenWithConfiguration:(RLMRealmConfiguration *)configuration
-                     callbackQueue:(dispatch_queue_t)callbackQueue
-                          callback:(RLMAsyncOpenRealmCallback)callback;
+                                   callbackQueue:(dispatch_queue_t)callbackQueue
+                                        callback:(RLMAsyncOpenRealmCallback)callback;
 
 /**
  The `RLMSchema` used by the Realm.
@@ -149,6 +193,34 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) BOOL isEmpty;
 
+/**
+ Indicates if this Realm is frozen.
+
+ @see `-[RLMRealm freeze]`
+ */
+@property (nonatomic, readonly, getter=isFrozen) BOOL frozen;
+
+/**
+ Returns a frozen (immutable) snapshot of this Realm.
+
+ A frozen Realm is an immutable snapshot view of a particular version of a
+ Realm's data. Unlike normal RLMRealm instances, it does not live-update to
+ reflect writes made to the Realm, and can be accessed from any thread. Writing
+ to a frozen Realm is not allowed, and attempting to begin a write transaction
+ will throw an exception.
+
+ All objects and collections read from a frozen Realm will also be frozen.
+ */
+- (RLMRealm *)freeze NS_RETURNS_RETAINED;
+
+/**
+ Returns a live reference of this Realm.
+
+ All objects and collections read from the returned Realm will no longer be frozen.
+ This method will return `self` if it is not already frozen.
+ */
+- (RLMRealm *)thaw;
+
 #pragma mark - File Management
 
 /**
@@ -169,6 +241,23 @@ NS_ASSUME_NONNULL_BEGIN
  @return `YES` if the Realm was successfully written to disk, `NO` if an error occurred.
  */
 - (BOOL)writeCopyToURL:(NSURL *)fileURL encryptionKey:(nullable NSData *)key error:(NSError **)error;
+
+/**
+ Writes a copy of the Realm to a given location specified by a given configuration.
+
+ If the configuration supplied is derived from a `RLMUser` then this Realm will be copied with
+ sync functionality enabled.
+
+ The destination file cannot already exist.
+
+ @param configuration A Realm Configuration.
+ @param error   If an error occurs, upon return contains an `NSError` object
+ that describes the problem. If you are not interested in
+ possible errors, pass in `NULL`.
+
+ @return `YES` if the Realm was successfully written to disk, `NO` if an error occurred.
+ */
+- (BOOL)writeCopyForConfiguration:(RLMRealmConfiguration *)configuration error:(NSError **)error;
 
 /**
  Checks if the Realm file for the given configuration exists locally on disk.
@@ -432,6 +521,151 @@ typedef void (^RLMNotificationBlock)(RLMNotification notification, RLMRealm *rea
 - (BOOL)transactionWithoutNotifying:(NSArray<RLMNotificationToken *> *)tokens block:(__attribute__((noescape)) void(^)(void))block error:(NSError **)error;
 
 /**
+ Indicates if the Realm is currently performing async write operations.
+ This becomes YES following a call to `beginAsyncWriteTransaction`,
+ `commitAsyncWriteTransaction`, or `asyncTransactionWithBlock:`, and remains so
+ until all scheduled async write work has completed.
+ 
+ @warning If this is `YES`, closing or invalidating the Realm will block until scheduled work has completed.
+ */
+@property (nonatomic, readonly) BOOL isPerformingAsynchronousWriteOperations;
+
+/**
+ Begins an asynchronous write transaction.
+ This function asynchronously begins a write transaction on a background
+ thread, and then invokes the block on the original thread or queue once the
+ transaction has begun. Unlike `beginWriteTransaction`, this does not block the
+ calling thread if another thread is current inside a write transaction, and
+ will always return immediately.
+ Multiple calls to this function (or the other functions which perform
+ asynchronous write transactions) will queue the blocks to be called in the
+ same order as they were queued. This includes calls from inside a write
+ transaction block, which unlike with synchronous transactions are allowed.
+ 
+ @param block The block containing actions to perform inside the write transaction.
+        `block` should end by calling `commitAsyncWriteTransaction`,
+        `commitWriteTransaction` or `cancelWriteTransaction`.
+        Returning without one of these calls is equivalent to calling `cancelWriteTransaction`.
+ 
+ @return An id identifying the asynchronous transaction which can be passed to
+         `cancelAsyncTransaction:` prior to the block being called to cancel
+         the pending invocation of the block.
+ */
+- (RLMAsyncTransactionId)beginAsyncWriteTransaction:(void(^)(void))block;
+
+/**
+ Asynchronously commits a write transaction.
+ The call returns immediately allowing the caller to proceed while the I/O is
+ performed on a dedicated background thread. This can be used regardless of if
+ the write transaction was begun with `beginWriteTransaction` or
+ `beginAsyncWriteTransaction`.
+ 
+ @param completionBlock A block which will be called on the source thread or
+                        queue once the commit has either completed or failed
+                        with an error.
+ 
+ @param allowGrouping If `YES`, multiple sequential calls to
+                      `commitAsyncWriteTransaction:` may be batched together
+                      and persisted to stable storage in one group. This
+                      improves write performance, particularly when the
+                      individual transactions being batched are small. In the
+                      event of a crash or power failure, either all of the
+                      grouped transactions will be lost or none will, rather
+                      than the usual guarantee that data has been persisted as
+                      soon as a call to commit has returned.
+ 
+ @return An id identifying the asynchronous transaction commit can be passed to
+         `cancelAsyncTransaction:` prior to the completion block being called
+         to cancel the pending invocation of the block. Note that this does
+         *not* cancel the commit itself.
+*/
+- (RLMAsyncTransactionId)commitAsyncWriteTransaction:(nullable void(^)(NSError *))completionBlock
+                                       allowGrouping:(BOOL)allowGrouping;
+
+/**
+ Asynchronously commits a write transaction.
+ The call returns immediately allowing the caller to proceed while the I/O is
+ performed on a dedicated background thread. This can be used regardless of if
+ the write transaction was begun with `beginWriteTransaction` or
+ `beginAsyncWriteTransaction`.
+ 
+ @param completionBlock A block which will be called on the source thread or
+                        queue once the commit has either completed or failed
+                        with an error.
+ 
+ @return An id identifying the asynchronous transaction commit can be passed to
+         `cancelAsyncTransaction:` prior to the completion block being called
+         to cancel the pending invocation of the block. Note that this does
+         *not* cancel the commit itself.
+*/
+- (RLMAsyncTransactionId)commitAsyncWriteTransaction:(void(^)(NSError *))completionBlock;
+
+/**
+ Asynchronously commits a write transaction.
+ The call returns immediately allowing the caller to proceed while the I/O is
+ performed on a dedicated background thread. This can be used regardless of if
+ the write transaction was begun with `beginWriteTransaction` or
+ `beginAsyncWriteTransaction`.
+ 
+ @return An id identifying the asynchronous transaction commit can be passed to
+         `cancelAsyncTransaction:` prior to the completion block being called
+         to cancel the pending invocation of the block. Note that this does
+         *not* cancel the commit itself.
+*/
+- (RLMAsyncTransactionId)commitAsyncWriteTransaction;
+
+/**
+ Cancels a queued block for an asynchronous transaction.
+ This can cancel a block passed to either an asynchronous begin or an
+ asynchronous commit. Canceling a begin cancels that transaction entirely,
+ while canceling a commit merely cancels the invocation of the completion
+ callback, and the commit will still happen.
+ Transactions can only be canceled before the block is invoked, and calling
+ `cancelAsyncTransaction:` from within the block is a no-op.
+ 
+ @param asyncTransactionId A transaction id from either `beginAsyncWriteTransaction:` or `commitAsyncWriteTransaction:`.
+*/
+- (void)cancelAsyncTransaction:(RLMAsyncTransactionId)asyncTransactionId;
+
+/**
+ Asynchronously performs actions contained within the given block inside a
+ write transaction.
+ The write transaction is begun asynchronously as if calling
+ `beginAsyncWriteTransaction:`, and by default the transaction is commited
+ asynchronously after the block completes. You can also explicitly call
+ `commitWriteTransaction` or `cancelWriteTransaction` from within the block to
+ synchronously commit or cancel the write transaction.
+ 
+ @param block The block containing actions to perform.
+ 
+ @param completionBlock A block which will be called on the source thread or
+                        queue once the commit has either completed or failed
+                        with an error.
+
+ @return An id identifying the asynchronous transaction which can be passed to
+         `cancelAsyncTransaction:` prior to the block being called to cancel
+         the pending invocation of the block.
+*/
+- (RLMAsyncTransactionId)asyncTransactionWithBlock:(void(^)(void))block onComplete:(nullable void(^)(NSError *))completionBlock;
+
+/**
+ Asynchronously performs actions contained within the given block inside a
+ write transaction.
+ The write transaction is begun asynchronously as if calling
+ `beginAsyncWriteTransaction:`, and by default the transaction is commited
+ asynchronously after the block completes. You can also explicitly call
+ `commitWriteTransaction` or `cancelWriteTransaction` from within the block to
+ synchronously commit or cancel the write transaction.
+ 
+ @param block The block containing actions to perform.
+ 
+ @return An id identifying the asynchronous transaction which can be passed to
+         `cancelAsyncTransaction:` prior to the block being called to cancel
+         the pending invocation of the block.
+*/
+- (RLMAsyncTransactionId)asyncTransactionWithBlock:(void(^)(void))block;
+
+/**
  Updates the Realm and outstanding objects managed by the Realm to point to the
  most recent data.
 
@@ -494,8 +728,7 @@ typedef void (^RLMNotificationBlock)(RLMNotification notification, RLMRealm *rea
  and a new read transaction is implicitly begun the next time data is read from the Realm.
 
  Calling this method multiple times in a row without reading any data from the
- Realm, or before ever reading any data from the Realm, is a no-op. This method
- may not be called on a read-only Realm.
+ Realm, or before ever reading any data from the Realm, is a no-op.
  */
 - (void)invalidate;
 
@@ -627,6 +860,17 @@ NS_REFINED_FOR_SWIFT;
  */
 - (void)deleteAllObjects;
 
+#pragma mark - Sync Subscriptions
+
+/**
+ Represents the active subscriptions for this realm, which can be used to add/remove/update
+ and search flexible sync subscriptions.
+ Getting the subscriptions from a local or partition-based configured realm will thrown an exception.
+
+ @warning This feature is currently in beta and its API is subject to change.
+ */
+@property (nonatomic, readonly, nonnull) RLMSyncSubscriptionSet *subscriptions;
+
 
 #pragma mark - Migrations
 
@@ -668,88 +912,6 @@ NS_REFINED_FOR_SWIFT;
  @see                 RLMMigration
  */
 + (BOOL)performMigrationForConfiguration:(RLMRealmConfiguration *)configuration error:(NSError **)error;
-
-#pragma mark - Privileges
-
-/**
- Returns the computed privileges which the current user has for this Realm.
-
- This combines all privileges granted on the Realm by all Roles which the
- current User is a member of into the final privileges which will be enforced by
- the server.
-
- The privilege calculation is done locally using cached data, and inherently may
- be stale. It is possible that this method may indicate that an operation is
- permitted but the server will still reject it if permission is revoked before
- the changes have been integrated on the server.
-
- Non-synchronized Realms always have permission to perform all operations.
-
- @warning This currently returns incorrect results for non-partially-synchronized read-only Realms.
- @return The privileges which the current user has for the current Realm.
- */
-- (struct RLMRealmPrivileges)privilegesForRealm;
-
-/**
- Returns the computed privileges which the current user has for the given object.
-
- This combines all privileges granted on the object by all Roles which the
- current User is a member of into the final privileges which will be enforced by
- the server.
-
- The privilege calculation is done locally using cached data, and inherently may
- be stale. It is possible that this method may indicate that an operation is
- permitted but the server will still reject it if permission is revoked before
- the changes have been integrated on the server.
-
- Non-synchronized Realms always have permission to perform all operations.
-
- The object must be a valid object managed by this Realm. Passing in an
- invalidated object, an unmanaged object, or an object managed by a different
- Realm will throw an exception.
-
- @warning This currently returns incorrect results for non-partially-synchronized read-only Realms.
- @return The privileges which the current user has for the given object.
- */
-- (struct RLMObjectPrivileges)privilegesForObject:(RLMObject *)object;
-
-/**
- Returns the computed privileges which the current user has for the given class.
-
- This combines all privileges granted on the class by all Roles which the
- current User is a member of into the final privileges which will be enforced by
- the server.
-
- The privilege calculation is done locally using cached data, and inherently may
- be stale. It is possible that this method may indicate that an operation is
- permitted but the server will still reject it if permission is revoked before
- the changes have been integrated on the server.
-
- Non-synchronized Realms always have permission to perform all operations.
-
- @warning This currently returns incorrect results for non-partially-synchronized read-only Realms.
- @return The privileges which the current user has for the given object.
- */
-- (struct RLMClassPrivileges)privilegesForClass:(Class)cls;
-
-/**
- Returns the computed privileges which the current user has for the named class.
-
- This combines all privileges granted on the class by all Roles which the
- current User is a member of into the final privileges which will be enforced by
- the server.
-
- The privilege calculation is done locally using cached data, and inherently may
- be stale. It is possible that this method may indicate that an operation is
- permitted but the server will still reject it if permission is revoked before
- the changes have been integrated on the server.
-
- Non-synchronized Realms always have permission to perform all operations.
-
- @warning This currently returns incorrect results for non-partially-synchronized read-only Realms.
- @return The privileges which the current user has for the given object.
- */
-- (struct RLMClassPrivileges)privilegesForClassNamed:(NSString *)className;
 
 #pragma mark - Unavailable Methods
 

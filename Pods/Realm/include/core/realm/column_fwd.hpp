@@ -23,24 +23,13 @@
 
 namespace realm {
 
-// Regular classes
-class ColumnBase;
-class StringColumn;
-class StringEnumColumn;
-class BinaryColumn;
-class SubtableColumn;
-class MixedColumn;
-class LinkColumn;
-class LinkListColumn;
-class TimestampColumn;
+struct ObjKey;
+class IntegerColumn;
+class IntegerColumnIterator;
 
 // Templated classes
 template <class T>
-class Column;
-template <class T>
-class BasicColumn;
-template <class T>
-class ColumnRandIterator;
+class BPlusTree;
 
 namespace util {
 template <class>
@@ -48,11 +37,10 @@ class Optional;
 }
 
 // Shortcuts, aka typedefs.
-using IntegerColumn = Column<int64_t>;
-using IntNullColumn = Column<util::Optional<int64_t>>;
-using DoubleColumn = Column<double>;
-using FloatColumn = Column<float>;
-using IntegerColumnIterator = ColumnRandIterator<int64_t>;
+using DoubleColumn = BPlusTree<double>;
+using FloatColumn = BPlusTree<float>;
+using KeyColumn = BPlusTree<ObjKey>;
+
 } // namespace realm
 
 #endif // REALM_COLUMN_FWD_HPP

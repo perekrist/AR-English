@@ -19,10 +19,9 @@
 #import "RLMSyncUtil_Private.h"
 
 #import "RLMSyncConfiguration_Private.h"
-#import "RLMSyncPermission.h"
 
-#import "sync/sync_manager.hpp"
-#import "realm/util/optional.hpp"
+#import <realm/object-store/sync/sync_manager.hpp>
+#import <realm/util/optional.hpp>
 
 @class RLMSyncErrorResponseModel;
 class CocoaSyncUserContext;
@@ -34,7 +33,9 @@ enum class AccessLevel;
 realm::SyncSessionStopPolicy translateStopPolicy(RLMSyncStopPolicy stopPolicy);
 RLMSyncStopPolicy translateStopPolicy(realm::SyncSessionStopPolicy stop_policy);
 
-std::shared_ptr<realm::SyncSession> sync_session_for_realm(RLMRealm *realm);
+typedef NS_ENUM(NSUInteger, RLMClientResetMode);
+RLMClientResetMode translateClientResetMode(realm::ClientResyncMode mode);
+realm::ClientResyncMode translateClientResetMode(RLMClientResetMode mode);
 
 #pragma mark - Get user context
 

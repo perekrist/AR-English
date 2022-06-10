@@ -13,7 +13,6 @@ struct GamesView: View {
     @State var isMemoViewPresented = false
     
     var body: some View {
-        VStack {
             List(games, id: \.self) { game in
                 
                 Button(action: {
@@ -21,14 +20,10 @@ struct GamesView: View {
                         self.isMemoViewPresented.toggle()
                     }
                 }) {
-                    ZStack {
-                        VStack {
-                            Text(game)
-                                .font(.title)
-                        }
-                    }
+                  Text(game)
+                    .font(.title)
                     .padding()
-                    .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.width / 2 + 50)
+                    .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.width / 2 + 50)
                     .background(Color.init(self.generateRandomColor()).opacity(0.5))
                     .foregroundColor(game == "Memo" ? Color.black : Color.black.opacity(0.3))
                     .cornerRadius(20)
@@ -40,8 +35,6 @@ struct GamesView: View {
             .sheet(isPresented: self.$isMemoViewPresented) {
                 MemoContainer()
             }
-        }
-        
     }
     
     func generateRandomColor() -> UIColor {

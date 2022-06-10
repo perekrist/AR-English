@@ -1,30 +1,11 @@
-/*************************************************************************
- *
- * REALM CONFIDENTIAL
- * __________________
- *
- *  [2011] - [2016] Realm Inc
- *  All Rights Reserved.
- *
- * NOTICE:  All information contained herein is, and remains
- * the property of Realm Incorporated and its suppliers,
- * if any.  The intellectual and technical concepts contained
- * herein are proprietary to Realm Incorporated
- * and its suppliers and may be covered by U.S. and Foreign Patents,
- * patents in process, and are protected by trade secret or copyright law.
- * Dissemination of this information or reproduction of this material
- * is strictly forbidden unless prior written permission is obtained
- * from Realm Incorporated.
- *
- **************************************************************************/
 #ifndef REALM_SYNC_PROTOCOL_HPP
 #define REALM_SYNC_PROTOCOL_HPP
 
 #include <cstdint>
 #include <system_error>
 
+#include <realm/mixed.hpp>
 #include <realm/replication.hpp>
-
 
 
 // NOTE: The protocol specification is in `/doc/protocol.md`
@@ -35,134 +16,39 @@ namespace sync {
 
 // Protocol versions:
 //
-//   1 Initial version.
+//   1 Initial version, matching io.realm.sync-30, but not including query-based
+//     sync, serialized transactions, and state realms (async open).
 //
-//   2 Introduces the UNBOUND message (sent from server to client in
-//     response to a BIND message).
+//   2 Restored erase-always-wins OT behavior.
 //
-//   3 Introduces the ERROR message (sent from server to client before the
-//     server closes a connection). Introduces MARK message from client to
-//     server, and MARK response message from server to client as a way for the
-//     client to wait for download to complete.
+//   3 Support for Mixed, TypeLinks, Set, and Dictionary columns.
 //
-//   4 User token and signature are now passed as a single string (see
-//     /doc/protocol.md for details). Also, `application_ident` parameter
-//     removed from IDENT message.
+//   4 Error messaging format accepts a flexible JSON field in 'json_error'.
+//     JSONErrorMessage.IsClientReset controls recovery mode.
 //
-//   5 IDENT message renamed to CLIENT, and ALLOC message (client->server)
-//     renamed to IDENT. Also, <client info> parameter added to CLIENT
-//     message. Also, the protocol has been changed to make the clients
-//     acquisition of a server allocated file identifier pair be part of a
-//     session from the servers point of view. File identifier and version
-//     parameters moved from the BIND message to a new IDENT message sent by
-//     client when it has obtained the file identifier pair. Both the new IDENT
-//     message and the ALLOC message sent by the server are now properly
-//     associated with a session.
+//   5 Introduces compensating write errors.
 //
-//   6 Server session IDs have been added to the IDENT, DOWNLOAD, and PROGRESS
-//     messages, and the "Divergent history" error code was added as an
-//     indication that a server version / session ID pair does not match the
-//     server's history.
+//   6 Support for asymmetric tables.
 //
-//   7 FIXME: Who introduced version 7? Please describe what changed.
-//
-//   8 Error code (`bad_authentication`) moved from 200-range to 300-range
-//     because it is now session specific. Other error codes were renumbered.
-//
-//   9 New format of the DOWNLOAD message to support progress reporting on the
-//     client
-//
-//  10 Error codes reordered (now categorized as either connection or session
-//     level errors).
-//
-//  11 Bugfixes in Link List and ChangeLinkTargets merge rules, that
-//     make previous versions incompatible.
-//
-//  12 FIXME What was 12?
-//
-//  13 Bugfixes in Link List and ChangeLinkTargets merge rules, that
-//     make previous versions incompatible.
-//
-//  14 Further bugfixes related to primary keys and link lists. Add support for
-//     LinkListSwap.
-//
-//  15 Deleting an object with a primary key deletes all objects on other
-//     with the same primary key.
-//
-//  16 Downloadable bytes added to DOWNLOAD message. It is used for download progress
-//     by the client
-//
-//  17 Added PING and PONG messages. It is used for rtt monitoring and dead
-//     connection detection by both the client and the server.
-//
-//  18 Enhanced the session_ident to accept values of size up to at least 63 bits.
-//
-//  19 New instruction log format with stable object IDs and arrays of
-//     primitives (Generalized LinkList* commands to Container* commands)
-//     Message format is identical to version 18.
-//
-//  20 Added support for log compaction in DOWNLOAD message.
-//
-//  21 Removed "class_" prefix in instructions referencing tables.
-//
-//  22 Fixed a bug in the merge rule of MOVE vs SWAP.
-//
-//  23 Introduced full support for session specific ERROR messages. Removed the
-//     obsolete concept of a "server file identifier". Added support for relayed
-//     subtier client file identifier allocation. For this purpose, the message
-//     that was formerly known as ALLOC was renamed to IDENT, and a new ALLOC
-//     message was added in both directions. Added the ability for an UPLOAD
-//     message to carry a per-changeset origin client file identifier. Added
-//     `<upload server version>` parameter to DOWNLOAD message. Added new error
-//     codes 215 "Unsupported session-level feature" and 216 "Bad origin client
-//     file identifier (UPLOAD)".
-//
-//  24 Support schema-breaking instructions. Official support for partial sync.
-//
-//  25 Include "last server version" in the UPLOAD message for history trimming
-//     on the server.
-//
-//  26 Four new protocol error codes, 217, 218, 219, and 220.
-//
-//     The downloadable_bytes field in the DOWNLOAD message denotes the byte
-//     size of the changesets following those in the DOWNLOAD
-//     message. Previously, downloadable_bytes denoted the total byte size of
-//     the entire history.
-//
-//     Introduction of protocol version flexibility on client side (strictly
-//     speaking, this is a change that transcends the sync protocol).
-//
-//  27 STATE_REQUEST, STATE, CLIENT_VERSION_REQUEST and CLIENT_VERSION messages
-//     introduced. These messages are used for client reset and async open.
-//
-//  28 Introduction of TRANSACT message (serialized transactions). New session
-//     level error code 221 "Serialized transaction before upload completion".
-//
-//     Also added new parameters `<min file format version>`, `<max file format
-//     version>`, `<min history schema version>`, and `<max history schema
-//     version>` to STATE_REQUEST message.
-//
-//  29 Addition of `<progress client version>` and `<progress server version>`
-//     to the UPLOAD message. Together, these constitute an upload cursor that
-//     marks the reached position in the client-side history of the uploading
-//     process.
-//
-//     Removal of `<last server version>`, and addition of `<locked server
-//     version>`. `<last server version>` was replaced in part by `<progress
-//     server version>` as described above, and in part by the new `<locked
-//     server version>`. The purpose of `<locked server version>` is to allow
-//     the client to lock parts of the server-side history that precede
-//     `<progress server version>`. It is intended to be used in the future in
-//     conjunction with the cooked history.
-//
-//  30 New error code, 222 "Client file has expired", was added. New parameter
-//     `<is subserver>` added to BIND message.
+//  XX Changes:
+//     - TBD
 //
 constexpr int get_current_protocol_version() noexcept
 {
-    return 30;
+    return 6;
 }
 
+constexpr std::string_view get_pbs_websocket_protocol_prefix() noexcept
+{
+    return "com.mongodb.realm-sync/";
+}
+
+constexpr std::string_view get_flx_websocket_protocol_prefix() noexcept
+{
+    return "com.mongodb.realm-query-sync/";
+}
+
+enum class SyncServerMode { PBS, FLX };
 
 /// Supported protocol envelopes:
 ///
@@ -194,6 +80,8 @@ inline bool is_ssl(ProtocolEnvelope protocol) noexcept
 
 // These integer types are selected so that they accomodate the requirements of
 // the protocol specification (`/doc/protocol.md`).
+//
+// clang-format off
 using file_ident_type    = std::uint_fast64_t;
 using version_type       = Replication::version_type;
 using salt_type          = std::int_fast64_t;
@@ -201,6 +89,7 @@ using timestamp_type     = std::uint_fast64_t;
 using session_ident_type = std::uint_fast64_t;
 using request_ident_type = std::uint_fast64_t;
 using milliseconds_type  = std::int_fast64_t;
+// clang-format on
 
 constexpr file_ident_type get_max_file_ident()
 {
@@ -237,6 +126,11 @@ struct SaltedVersion {
 struct DownloadCursor {
     version_type server_version;
     version_type last_integrated_client_version;
+};
+
+enum class DownloadBatchState {
+    MoreToCome,
+    LastInBatch,
 };
 
 /// Checks that `dc.last_integrated_client_version` is zero if
@@ -299,23 +193,42 @@ struct SyncProgress {
     UploadCursor upload = {0, 0};
 };
 
-
-/// An indication of the final status of an attempt at performing a serialized
-/// transaction.
-enum class SerialTransactStatus {
-    /// The transaction was accepted and successful.
-    accepted = 1,
-
-    /// The transaction was rejected because the servers history contained
-    /// causally unrelated changes. I.e., the requesting client lost a race to
-    /// be served first. The client should try again.
-    rejected = 2,
-
-    /// The server did not support serialized transactions at all, or did not
-    /// support it on the targeted Realm in particular.
-    not_supported = 3,
+struct CompensatingWriteErrorInfo {
+    std::string object_name;
+    Mixed primary_key;
+    std::string reason;
 };
 
+struct ResumptionDelayInfo {
+    std::chrono::milliseconds max_resumption_delay_interval = std::chrono::minutes{5};
+    std::chrono::milliseconds resumption_delay_interval = std::chrono::seconds{1};
+    int resumption_delay_backoff_multiplier = 2;
+};
+
+struct ProtocolErrorInfo {
+    ProtocolErrorInfo() = default;
+    ProtocolErrorInfo(int error_code, const std::string& msg, bool do_try_again)
+        : raw_error_code(error_code)
+        , message(msg)
+        , try_again(do_try_again)
+        , client_reset_recovery_is_disabled(false)
+        , should_client_reset(util::none)
+    {
+    }
+    int raw_error_code = 0;
+    std::string message;
+    bool try_again = false;
+    bool client_reset_recovery_is_disabled = false;
+    util::Optional<bool> should_client_reset;
+    util::Optional<std::string> log_url;
+    std::vector<CompensatingWriteErrorInfo> compensating_writes;
+    util::Optional<ResumptionDelayInfo> resumption_delay_interval;
+
+    bool is_fatal() const
+    {
+        return !try_again;
+    }
+};
 
 
 /// \brief Protocol errors discovered by the server, and reported to the client
@@ -327,6 +240,8 @@ enum class SerialTransactStatus {
 /// ATTENTION: Please remember to update is_session_level_error() when
 /// adding/removing error codes.
 enum class ProtocolError {
+    // clang-format off
+
     // Connection level and protocol errors
     connection_closed            = 100, // Connection closed (no error)
     other_error                  = 101, // Other connection level error
@@ -341,25 +256,24 @@ enum class ProtocolError {
     bad_decompression            = 110, // Error in decompression (UPLOAD)
     bad_changeset_header_syntax  = 111, // Bad syntax in a changeset header (UPLOAD)
     bad_changeset_size           = 112, // Bad size specified in changeset header (UPLOAD)
-    bad_changesets               = 113, // Bad changesets (UPLOAD)
+    switch_to_flx_sync           = 113, // Connected with wrong wire protocol - should switch to FLX sync
+    switch_to_pbs                = 114, // Connected with wrong wire protocol - should switch to PBS
 
     // Session level errors
     session_closed               = 200, // Session closed (no error)
     other_session_error          = 201, // Other session level error
     token_expired                = 202, // Access token expired
-    bad_authentication           = 203, // Bad user authentication (BIND, REFRESH)
+    bad_authentication           = 203, // Bad user authentication (BIND)
     illegal_realm_path           = 204, // Illegal Realm path (BIND)
     no_such_realm                = 205, // No such Realm (BIND)
-    permission_denied            = 206, // Permission denied (STATE_REQUEST, BIND, REFRESH)
+    permission_denied            = 206, // Permission denied (BIND)
     bad_server_file_ident        = 207, // Bad server file identifier (IDENT) (obsolete!)
     bad_client_file_ident        = 208, // Bad client file identifier (IDENT)
     bad_server_version           = 209, // Bad server version (IDENT, UPLOAD, TRANSACT)
     bad_client_version           = 210, // Bad client version (IDENT, UPLOAD)
     diverging_histories          = 211, // Diverging histories (IDENT)
     bad_changeset                = 212, // Bad changeset (UPLOAD)
-    superseded                   = 213, // Superseded by new session for same client-side file (deprecated)
-    disabled_session             = 213, // Alias for `superseded` (deprecated)
-    partial_sync_disabled        = 214, // Partial sync disabled (BIND, STATE_REQUEST)
+    partial_sync_disabled        = 214, // Partial sync disabled (BIND)
     unsupported_session_feature  = 215, // Unsupported session-level feature
     bad_origin_file_ident        = 216, // Bad origin file identifier (UPLOAD)
     bad_client_file              = 217, // Synchronization no longer possible for client-side file
@@ -368,6 +282,22 @@ enum class ProtocolError {
     user_blacklisted             = 220, // User has been blacklisted (BIND)
     transact_before_upload       = 221, // Serialized transaction before upload completion
     client_file_expired          = 222, // Client file has expired
+    user_mismatch                = 223, // User mismatch for client file identifier (IDENT)
+    too_many_sessions            = 224, // Too many sessions in connection (BIND)
+    invalid_schema_change        = 225, // Invalid schema change (UPLOAD)
+    bad_query                    = 226, // Client query is invalid/malformed (IDENT, QUERY)
+    object_already_exists        = 227, // Client tried to create an object that already exists outside their
+                                        // view (UPLOAD)
+    server_permissions_changed   = 228, // Server permissions for this file ident have changed since the last time it
+                                        // was used (IDENT)
+    initial_sync_not_completed   = 229, // Client tried to open a session before initial sync is complete (BIND)
+    write_not_allowed            = 230, // Client attempted a write that is disallowed by permissions, or modifies an
+                                        // object outside the current query - requires client reset (UPLOAD)
+    compensating_write           = 231, // Client attempted a write that is disallowed by permissions, or modifies and
+                                        // object outside the current query, and the server undid the modification
+                                        // (UPLOAD)
+
+    // clang-format on
 };
 
 constexpr bool is_session_level_error(ProtocolError);
@@ -385,7 +315,8 @@ std::error_code make_error_code(ProtocolError) noexcept;
 
 namespace std {
 
-template<> struct is_error_code_enum<realm::sync::ProtocolError> {
+template <>
+struct is_error_code_enum<realm::sync::ProtocolError> {
     static const bool value = true;
 };
 
@@ -393,9 +324,6 @@ template<> struct is_error_code_enum<realm::sync::ProtocolError> {
 
 namespace realm {
 namespace sync {
-
-
-
 
 
 // Implementation
@@ -431,6 +359,16 @@ inline bool are_mutually_consistent(UploadCursor a, UploadCursor b) noexcept
 constexpr bool is_session_level_error(ProtocolError error)
 {
     return int(error) >= 200 && int(error) <= 299;
+}
+
+constexpr bool session_level_error_requires_suspend(ProtocolError error)
+{
+    switch (error) {
+        case ProtocolError::compensating_write:
+            return false;
+        default:
+            return true;
+    }
 }
 
 } // namespace sync

@@ -23,7 +23,9 @@
 #define __STDC_LIMIT_MACROS
 #endif
 
+#include <cstdint>
 #include <limits>
+#include <ostream>
 
 namespace realm {
 
@@ -66,6 +68,12 @@ struct VersionID {
         return version >= other.version;
     }
 };
+
+inline std::ostream& operator<<(std::ostream& os, VersionID id)
+{
+    os << "VersionID(" << id.version << ", " << id.index << ")";
+    return os;
+}
 
 } // namespace realm
 

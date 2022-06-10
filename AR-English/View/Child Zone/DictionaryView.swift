@@ -25,11 +25,11 @@ struct DictionaryView: View {
                     HStack {
                         WebImage(url: URL(string: word.image))
                             .resizable()
+                            .scaledToFill()
                             .frame(width: 50, height: 50)
-                            .scaledToFit()
                             .clipShape(Circle())
                         
-                        VStack {
+                      VStack(alignment: .leading) {
                             Text(word.name)
                                 .font(.largeTitle)
                                 .foregroundColor(.black)

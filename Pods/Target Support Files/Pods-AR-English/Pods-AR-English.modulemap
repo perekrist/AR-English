@@ -1,4 +1,4 @@
-framework module Pods_AR_English {
+module Pods_AR_English {
   umbrella header "Pods-AR-English-umbrella.h"
 
   export *

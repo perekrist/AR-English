@@ -3,25 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A5CA1A1DEA0E49F7A2C452F /* Pods_AR_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09459F71720C852B874D6DD9 /* Pods_AR_English.framework */; };
+		2A5CA1A1DEA0E49F7A2C452F /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		8E475E3C285348E6004014B8 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E38285348E6004014B8 /* RealmViewModel.swift */; };
+		8E475E3D285348E6004014B8 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E39285348E6004014B8 /* SpeechService.swift */; };
+		8E475E3E285348E6004014B8 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E3A285348E6004014B8 /* NetworkViewModel.swift */; };
+		8E475E3F285348E6004014B8 /* ParseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E3B285348E6004014B8 /* ParseViewModel.swift */; };
+		8E475E4128534929004014B8 /* ChildErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E4028534929004014B8 /* ChildErrorView.swift */; };
+		8E475E4328534932004014B8 /* ParentErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E4228534931004014B8 /* ParentErrorView.swift */; };
+		8E475E4E28534A01004014B8 /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E475E4C28534A01004014B8 /* tests.json */; };
+		8E475E5328534A2B004014B8 /* DBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E5128534A2B004014B8 /* DBWord.swift */; };
+		8E475E5428534A2B004014B8 /* DBChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E475E5228534A2B004014B8 /* DBChild.swift */; };
+		8E475E5628534B1C004014B8 /* red.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 8E475E5528534B1C004014B8 /* red.usdz */; };
 		CA21509824ADE2FE0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA21509F24ADFE910061D140 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21509D24ADFE910061D140 /* Word.swift */; };
-		CA2150A024ADFE910061D140 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21509E24ADFE910061D140 /* Test.swift */; };
-		CA2150A324ADFECD0061D140 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150A224ADFECD0061D140 /* NetworkViewModel.swift */; };
+		CA21509F24ADFE910061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		CA2150A024ADFE910061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		CA2150A324ADFECD0061D140 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA2150A924B1F46F0061D140 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		CA2150AB24B2171C0061D140 /* ParseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150AA24B2171C0061D140 /* ParseViewModel.swift */; };
-		CA2150AE24B217FD0061D140 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150AC24B217FD0061D140 /* RealmViewModel.swift */; };
-		CA2150AF24B217FD0061D140 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150AD24B217FD0061D140 /* SpeechService.swift */; };
 		CA2150B324B2180A0061D140 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150B024B2180A0061D140 /* Test.swift */; };
 		CA2150B424B2180A0061D140 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150B124B2180A0061D140 /* Word.swift */; };
 		CA2150B524B2180A0061D140 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2150B224B2180A0061D140 /* words.json */; };
 		CA2150D624B319830061D140 /* ChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D524B319830061D140 /* ChildView.swift */; };
 		CA2150D824B319C30061D140 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D724B319C30061D140 /* Child.swift */; };
-		CA2150DA24B31F0F0061D140 /* DBChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2150D924B31F0F0061D140 /* DBChild.swift */; };
 		CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EB9249B476300F27825 /* MultipeerSession.swift */; };
 		CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B7EBD249B491A00F27825 /* Utilities.swift */; };
 		CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA57CD29248E5B0300C9F0AD /* AppDelegate.swift */; };
@@ -57,22 +63,28 @@
 		CAFF60CE249F791B0019E8C2 /* robot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = CAFF60C7249F791B0019E8C2 /* robot.usdz */; };
 		CAFF60D0249F79470019E8C2 /* WordContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF60CF249F79470019E8C2 /* WordContainer.swift */; };
 		CAFF60D4249F7A730019E8C2 /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF60D3249F7A730019E8C2 /* WordViewController.swift */; };
+		FD4076345E2E4850822ADB86 /* libPods-AR-English.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C082C2A64430B4250232D /* libPods-AR-English.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		320EB6E5EC9E0C993228DE78 /* Pods-AR-English.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.release.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.release.xcconfig"; sourceTree = "<group>"; };
-		7EAF92520AA78BF7908DD6D9 /* Pods-AR-English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.debug.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.debug.xcconfig"; sourceTree = "<group>"; };
-		8B331A7EFE2442EABCC32888 /* Pods_AR_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AR_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA21509724ADE2FE0061D140 /* DBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWord.swift; sourceTree = "<group>"; };
-		CA2150AA24B2171C0061D140 /* ParseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseViewModel.swift; sourceTree = "<group>"; };
-		CA2150AC24B217FD0061D140 /* RealmViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
-		CA2150AD24B217FD0061D140 /* SpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		0E1101CB5B539900E16F9DDB /* Pods-AR-English.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.release.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.release.xcconfig"; sourceTree = "<group>"; };
+		5D9C082C2A64430B4250232D /* libPods-AR-English.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AR-English.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E475E38285348E6004014B8 /* RealmViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		8E475E39285348E6004014B8 /* SpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		8E475E3A285348E6004014B8 /* NetworkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
+		8E475E3B285348E6004014B8 /* ParseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseViewModel.swift; sourceTree = "<group>"; };
+		8E475E4028534929004014B8 /* ChildErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildErrorView.swift; sourceTree = "<group>"; };
+		8E475E4228534931004014B8 /* ParentErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentErrorView.swift; sourceTree = "<group>"; };
+		8E475E4C28534A01004014B8 /* tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tests.json; sourceTree = "<group>"; };
+		8E475E5128534A2B004014B8 /* DBWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBWord.swift; sourceTree = "<group>"; };
+		8E475E5228534A2B004014B8 /* DBChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBChild.swift; sourceTree = "<group>"; };
+		8E475E5528534B1C004014B8 /* red.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = red.usdz; sourceTree = "<group>"; };
+		B8F1388E5B7C7B36A9797C03 /* Pods-AR-English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR-English.debug.xcconfig"; path = "Target Support Files/Pods-AR-English/Pods-AR-English.debug.xcconfig"; sourceTree = "<group>"; };
 		CA2150B024B2180A0061D140 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		CA2150B124B2180A0061D140 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		CA2150B224B2180A0061D140 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		CA2150D524B319830061D140 /* ChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildView.swift; sourceTree = "<group>"; };
 		CA2150D724B319C30061D140 /* Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
-		CA2150D924B31F0F0061D140 /* DBChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBChild.swift; sourceTree = "<group>"; };
 		CA2B7EB9249B476300F27825 /* MultipeerSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 		CA2B7EBD249B491A00F27825 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CA57CD26248E5B0300C9F0AD /* AR-English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +129,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A5CA1A1DEA0E49F7A2C452F /* Pods_AR_English.framework in Frameworks */,
+				2A5CA1A1DEA0E49F7A2C452F /* (null) in Frameworks */,
+				FD4076345E2E4850822ADB86 /* libPods-AR-English.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +140,7 @@
 		1F6F736212744E71C1F7AE62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09459F71720C852B874D6DD9 /* Pods_AR_English.framework */,
+				5D9C082C2A64430B4250232D /* libPods-AR-English.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,27 +148,30 @@
 		24A3BA757DD5774C4296B86A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BDD70F636D7FDDA62EF76D9F /* Pods-AR-English.debug.xcconfig */,
-				24BC377081D49CD33FA5B9EE /* Pods-AR-English.release.xcconfig */,
+				B8F1388E5B7C7B36A9797C03 /* Pods-AR-English.debug.xcconfig */,
+				0E1101CB5B539900E16F9DDB /* Pods-AR-English.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8E475E5028534A1E004014B8 /* DBModel */ = {
+			isa = PBXGroup;
+			children = (
+				8E475E5228534A2B004014B8 /* DBChild.swift */,
+				8E475E5128534A2B004014B8 /* DBWord.swift */,
+			);
+			path = DBModel;
 			sourceTree = "<group>";
 		};
 		CA2150A124ADFEA60061D140 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CA21509724ADE2FE0061D140 /* DBWord.swift */,
-				CA2150D924B31F0F0061D140 /* DBChild.swift */,
+				8E475E3A285348E6004014B8 /* NetworkViewModel.swift */,
+				8E475E3B285348E6004014B8 /* ParseViewModel.swift */,
+				8E475E38285348E6004014B8 /* RealmViewModel.swift */,
+				8E475E39285348E6004014B8 /* SpeechService.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		CA2150CA24B30F000061D140 /* DBModel */ = {
-			isa = PBXGroup;
-			children = (
-				CA2150CB24B30F000061D140 /* DBWord.swift */,
-			);
-			path = DBModel;
 			sourceTree = "<group>";
 		};
 		CA57CD1D248E5B0300C9F0AD = {
@@ -241,11 +257,12 @@
 		CAAB693124A25FCA00711DCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E475E5028534A1E004014B8 /* DBModel */,
+				8E475E4C28534A01004014B8 /* tests.json */,
 				CA2150B024B2180A0061D140 /* Test.swift */,
 				CA2150B124B2180A0061D140 /* Word.swift */,
 				CA2150D724B319C30061D140 /* Child.swift */,
 				CA2150B224B2180A0061D140 /* words.json */,
-				CA21509624ADE2E10061D140 /* DBModel */,
 				CAFF60C3249F791B0019E8C2 /* models */,
 			);
 			path = Model;
@@ -264,7 +281,7 @@
 		CAAB694F24A26CF400711DCB /* Parent Zone */ = {
 			isa = PBXGroup;
 			children = (
-				CA2150D124B30F380061D140 /* ParentErrorView.swift */,
+				8E475E4228534931004014B8 /* ParentErrorView.swift */,
 				CAAB693424A25FEA00711DCB /* ProfileView.swift */,
 				CAAB693B24A25FEA00711DCB /* StatisticsView.swift */,
 				CA2150D524B319830061D140 /* ChildView.swift */,
@@ -275,7 +292,7 @@
 		CAAB695024A26CFC00711DCB /* Child Zone */ = {
 			isa = PBXGroup;
 			children = (
-				CA2150D324B30F3F0061D140 /* ChildErrorView.swift */,
+				8E475E4028534929004014B8 /* ChildErrorView.swift */,
 				CAAB693A24A25FEA00711DCB /* MainView.swift */,
 				CAAB693724A25FEA00711DCB /* DictionaryView.swift */,
 				CAAB693324A25FEA00711DCB /* GamesView.swift */,
@@ -300,6 +317,7 @@
 		CAFF60C3249F791B0019E8C2 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				8E475E5528534B1C004014B8 /* red.usdz */,
 				CAFF60C4249F791B0019E8C2 /* plane.usdz */,
 				CAFF60C5249F791B0019E8C2 /* car.usdz */,
 				CAFF60C6249F791B0019E8C2 /* solider.usdz */,
@@ -319,7 +337,6 @@
 				CA57CD22248E5B0300C9F0AD /* Sources */,
 				CA57CD23248E5B0300C9F0AD /* Frameworks */,
 				CA57CD24248E5B0300C9F0AD /* Resources */,
-				9220F42A294E909D750293D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,35 +394,17 @@
 				CA60AABC24913C4100760D5E /* VisionScreen.storyboard in Resources */,
 				CA57CD30248E5B0700C9F0AD /* Assets.xcassets in Resources */,
 				CAFF60C8249F791B0019E8C2 /* Word.storyboard in Resources */,
-				CA2150D024B30F000061D140 /* words.json in Resources */,
-				CA2150B524B2180A0061D140 /* (null) in Resources */,
+				8E475E5628534B1C004014B8 /* red.usdz in Resources */,
+				CA2150B524B2180A0061D140 /* words.json in Resources */,
 				CAFF60CD249F791B0019E8C2 /* solider.usdz in Resources */,
-				CA2150B924B2D0A10061D140 /* (null) in Resources */,
+				8E475E4E28534A01004014B8 /* tests.json in Resources */,
 				CA2150A924B1F46F0061D140 /* (null) in Resources */,
-				CA2150CF24B30F000061D140 /* tests.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9220F42A294E909D750293D4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AR-English/Pods-AR-English-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AR-English/Pods-AR-English-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AR-English/Pods-AR-English-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		97CA5443ED8D19F5361754B6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,47 +434,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2150AE24B217FD0061D140 /* (null) in Sources */,
 				CA60AAB724913B3F00760D5E /* ViewController.swift in Sources */,
 				CAAB694924A25FEA00711DCB /* TestView.swift in Sources */,
 				CA60AAE32494E1E400760D5E /* ARMemoViewController.swift in Sources */,
 				CAAB694724A25FEA00711DCB /* StatisticsView.swift in Sources */,
+				8E475E3F285348E6004014B8 /* ParseViewModel.swift in Sources */,
 				CAFF60D4249F7A730019E8C2 /* WordViewController.swift in Sources */,
 				CAAB694524A25FEA00711DCB /* RegistrationView.swift in Sources */,
+				8E475E3E285348E6004014B8 /* NetworkViewModel.swift in Sources */,
 				CAAB693E24A25FEA00711DCB /* Extentios.swift in Sources */,
-				CA2150D424B30F3F0061D140 /* ChildErrorView.swift in Sources */,
+				8E475E5328534A2B004014B8 /* DBWord.swift in Sources */,
+				8E475E3C285348E6004014B8 /* RealmViewModel.swift in Sources */,
 				CA2B7EBA249B476300F27825 /* MultipeerSession.swift in Sources */,
 				CA57CD46248E5D3600C9F0AD /* ObjectDetector.mlmodel in Sources */,
-				CA2150AB24B2171C0061D140 /* (null) in Sources */,
 				CAAB694624A25FEA00711DCB /* MainView.swift in Sources */,
-				CA21509F24ADFE910061D140 /* Word.swift in Sources */,
+				CA21509F24ADFE910061D140 /* (null) in Sources */,
 				CA57CD2A248E5B0300C9F0AD /* AppDelegate.swift in Sources */,
 				CA57CD2C248E5B0300C9F0AD /* SceneDelegate.swift in Sources */,
 				CAAB694324A25FEA00711DCB /* DictionaryView.swift in Sources */,
-				CA2150AF24B217FD0061D140 /* (null) in Sources */,
 				CA21509824ADE2FE0061D140 /* (null) in Sources */,
-				CA2150B324B2180A0061D140 /* (null) in Sources */,
-				CA2150CE24B30F000061D140 /* DBWord.swift in Sources */,
+				CA2150B324B2180A0061D140 /* Test.swift in Sources */,
 				CAAB694024A25FEA00711DCB /* ProfileView.swift in Sources */,
 				CA2B7EBE249B491A00F27825 /* Utilities.swift in Sources */,
-				CA2150A024ADFE910061D140 /* Test.swift in Sources */,
+				CA2150A024ADFE910061D140 /* (null) in Sources */,
 				CAAB694124A25FEA00711DCB /* WordDescriptionView.swift in Sources */,
 				CA2150D624B319830061D140 /* ChildView.swift in Sources */,
 				CA2150B424B2180A0061D140 /* Word.swift in Sources */,
+				8E475E3D285348E6004014B8 /* SpeechService.swift in Sources */,
 				CA60AAB624913B3F00760D5E /* VisionViewController.swift in Sources */,
-				CA2150A324ADFECD0061D140 /* NetworkViewModel.swift in Sources */,
+				CA2150A324ADFECD0061D140 /* (null) in Sources */,
 				CAAB694824A25FEA00711DCB /* TestsView.swift in Sources */,
-				CA2150C724B30EE60061D140 /* ParseViewModel.swift in Sources */,
 				CAAB694224A25FEA00711DCB /* LoginView.swift in Sources */,
-				CA2150DA24B31F0F0061D140 /* DBChild.swift in Sources */,
 				CA2150D824B319C30061D140 /* Child.swift in Sources */,
 				CAFF60D0249F79470019E8C2 /* WordContainer.swift in Sources */,
+				8E475E5428534A2B004014B8 /* DBChild.swift in Sources */,
 				CA57CD2E248E5B0300C9F0AD /* ContentView.swift in Sources */,
 				CAAB693F24A25FEA00711DCB /* GamesView.swift in Sources */,
-				CA2150C824B30EE60061D140 /* RealmViewModel.swift in Sources */,
-				CA2150C924B30EE60061D140 /* SpeechService.swift in Sources */,
+				8E475E4128534929004014B8 /* ChildErrorView.swift in Sources */,
 				CAAB694424A25FEA00711DCB /* LocationsView.swift in Sources */,
-				CA2150D224B30F380061D140 /* ParentErrorView.swift in Sources */,
+				8E475E4328534932004014B8 /* ParentErrorView.swift in Sources */,
 				CA60AAE52494E25D00760D5E /* MemoContainer.swift in Sources */,
 				CA60AACA2494BA0100760D5E /* VisionObjectRecognitionViewController.swift in Sources */,
 			);
@@ -611,7 +608,7 @@
 		};
 		CA57CD3B248E5B0700C9F0AD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDD70F636D7FDDA62EF76D9F /* Pods-AR-English.debug.xcconfig */;
+			baseConfigurationReference = B8F1388E5B7C7B36A9797C03 /* Pods-AR-English.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -632,7 +629,7 @@
 		};
 		CA57CD3C248E5B0700C9F0AD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24BC377081D49CD33FA5B9EE /* Pods-AR-English.release.xcconfig */;
+			baseConfigurationReference = 0E1101CB5B539900E16F9DDB /* Pods-AR-English.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

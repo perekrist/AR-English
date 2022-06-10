@@ -14,30 +14,25 @@ struct LocationsView: View {
     @State var isVisionPresented = false
     
     var body: some View {
-        VStack {
             List(locations, id: \.self) { location in
                 Button(action: {
                     if location == "breakfast" {
                         self.isVisionPresented.toggle()
                     }
                 }) {
-                    VStack {
                         Image(location)
                             .renderingMode(.original)
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: UIScreen.main.bounds.width - 60)
+                            .scaledToFit()
                             .cornerRadius(20)
-                    }
-                    .padding()
-                    .background(Color.init(self.generateRandomColor()).opacity(0.5))
-                    .cornerRadius(20)
+                            .padding()
+                            .background(Color.init(self.generateRandomColor()).opacity(0.5))
+                            .cornerRadius(20)
                 }
             }
             .sheet(isPresented: self.$isVisionPresented) {
                 VisionViewController()
             }
-        }
     }
     
     func generateRandomColor() -> UIColor {

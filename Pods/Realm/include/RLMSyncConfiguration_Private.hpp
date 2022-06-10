@@ -32,16 +32,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RLMSyncConfiguration ()
 
-- (instancetype)initWithUser:(RLMSyncUser *)user
-                    realmURL:(NSURL *)url
-               customFileURL:(nullable NSURL *)customFileURL
-                   isPartial:(BOOL)isPartial
-                  stopPolicy:(RLMSyncStopPolicy)stopPolicy;
-
 - (instancetype)initWithRawConfig:(realm::SyncConfig)config;
 
 - (realm::SyncConfig&)rawConfiguration;
 
+// Pass the RLMRealmConfiguration to it's sync configuration so client reset callbacks
+// can access schema, dynamic, and path properties.
+void RLMSetConfigInfoForClientResetCallbacks(realm::SyncConfig& syncConfig, RLMRealmConfiguration *config);
+
 @end
+
+NSError *_Nullable RLMTranslateSyncError(realm::SyncError);
 
 NS_ASSUME_NONNULL_END

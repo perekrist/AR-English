@@ -15,7 +15,8 @@ struct ChildErrorView: View {
     @Binding var description: String
     
     var body: some View {
-        GeometryReader { _ in
+        ZStack {
+          Color.black.opacity(0.3).edgesIgnoringSafeArea(.all)
             VStack {
                 Text(self.error)
                     .font(.title)
@@ -23,7 +24,6 @@ struct ChildErrorView: View {
                     .foregroundColor(Color.black.opacity(0.7))
                 
                 Text(self.description)
-                    .multilineTextAlignment(.center)
                     .foregroundColor(Color.black.opacity(0.7))
                     .padding(25)
                 
@@ -45,7 +45,6 @@ struct ChildErrorView: View {
             .background(Color.white)
             .cornerRadius(15)
         }
-        .background(Color.black.opacity(0.3).edgesIgnoringSafeArea(.all))
     }
 }
 
@@ -54,3 +53,4 @@ struct ChildErrorView_Previews: PreviewProvider {
         ChildErrorView(alert: .constant(true), error: .constant("incorrect answer!"), description: .constant("Try again or chech the dictionary!"))
     }
 }
+

@@ -30,7 +30,7 @@ namespace realm {
 
 template <class T>
 inline BasicArray<T>::BasicArray(Allocator& allocator) noexcept
-    : Array(allocator)
+    : Node(allocator)
 {
 }
 
@@ -56,33 +56,6 @@ inline MemRef BasicArray<T>::create_array(size_t init_size, Allocator& allocator
 
 
 template <class T>
-inline MemRef BasicArray<T>::create_array(Array::Type type, bool context_flag, size_t init_size, T value,
-                                          Allocator& allocator)
-{
-    REALM_ASSERT(type == Array::type_Normal);
-    REALM_ASSERT(!context_flag);
-    MemRef mem = create_array(init_size, allocator);
-    if (init_size) {
-        // GCC 7.x emits a false-positive strict aliasing warning for this code. Suppress it, since it
-        // clutters up the build output.  See <https://github.com/realm/realm-core/issues/2665> for details.
-        REALM_DIAG_PUSH();
-        REALM_DIAG(ignored "-Wstrict-aliasing");
-
-        BasicArray<T> tmp(allocator);
-        tmp.init_from_mem(mem);
-        T* p = reinterpret_cast<T*>(tmp.m_data);
-        T* end = p + init_size;
-        while (p < end) {
-            *p++ = value;
-        }
-
-        REALM_DIAG_POP();
-    }
-    return mem;
-}
-
-
-template <class T>
 inline void BasicArray<T>::create(Array::Type type, bool context_flag)
 {
     REALM_ASSERT(type == Array::type_Normal);
@@ -90,34 +63,6 @@ inline void BasicArray<T>::create(Array::Type type, bool context_flag)
     size_t length = 0;
     MemRef mem = create_array(length, get_alloc()); // Throws
     init_from_mem(mem);
-}
-
-
-template <class T>
-MemRef BasicArray<T>::slice(size_t offset, size_t slice_size, Allocator& target_alloc) const
-{
-    REALM_ASSERT(is_attached());
-
-    // FIXME: This can be optimized as a single contiguous copy
-    // operation.
-    BasicArray array_slice(target_alloc);
-    _impl::ShallowArrayDestroyGuard dg(&array_slice);
-    array_slice.create(); // Throws
-    size_t begin = offset;
-    size_t end = offset + slice_size;
-    for (size_t i = begin; i != end; ++i) {
-        T value = get(i);
-        array_slice.add(value); // Throws
-    }
-    dg.release();
-    return array_slice.get_mem();
-}
-
-template <class T>
-MemRef BasicArray<T>::slice_and_clone_children(size_t offset, size_t slice_size, Allocator& target_alloc) const
-{
-    // BasicArray<T> never contains refs, so never has children.
-    return slice(offset, slice_size, target_alloc);
 }
 
 
@@ -132,16 +77,6 @@ template <class T>
 inline T BasicArray<T>::get(size_t ndx) const noexcept
 {
     return *(reinterpret_cast<const T*>(m_data) + ndx);
-}
-
-
-template <class T>
-inline bool BasicArray<T>::is_null(size_t ndx) const noexcept
-{
-    // FIXME: This assumes BasicArray will only ever be instantiated for float-like T.
-    static_assert(realm::is_any<T, float, double>::value, "T can only be float or double");
-    auto x = get(ndx);
-    return null::is_null_float(x);
 }
 
 
@@ -171,13 +106,6 @@ inline void BasicArray<T>::set(size_t ndx, T value)
 }
 
 template <class T>
-inline void BasicArray<T>::set_null(size_t ndx)
-{
-    // FIXME: This assumes BasicArray will only ever be instantiated for float-like T.
-    set(ndx, null::get_null_float<T>());
-}
-
-template <class T>
 void BasicArray<T>::insert(size_t ndx, T value)
 {
     REALM_ASSERT_3(ndx, <=, m_size);
@@ -186,21 +114,20 @@ void BasicArray<T>::insert(size_t ndx, T value)
     copy_on_write(); // Throws
 
     // Make room for the new value
-    alloc(m_size + 1, m_width); // Throws
+    const auto old_size = m_size;
+    alloc(m_size + 1, sizeof(T)); // Throws
 
     // Move values below insertion
-    if (ndx != m_size) {
-        char* src_begin = m_data + ndx * m_width;
-        char* src_end = m_data + m_size * m_width;
-        char* dst_end = src_end + m_width;
+    if (ndx != old_size) {
+        char* src_begin = m_data + ndx * sizeof(T);
+        char* src_end = m_data + old_size * sizeof(T);
+        char* dst_end = src_end + sizeof(T);
         std::copy_backward(src_begin, src_end, dst_end);
     }
 
     // Set the value
     T* data = reinterpret_cast<T*>(m_data) + ndx;
     *data = value;
-
-    ++m_size;
 }
 
 template <class T>
@@ -213,9 +140,9 @@ void BasicArray<T>::erase(size_t ndx)
 
     // move data under deletion up
     if (ndx < m_size - 1) {
-        char* dst_begin = m_data + ndx * m_width;
-        const char* src_begin = dst_begin + m_width;
-        const char* src_end = m_data + m_size * m_width;
+        char* dst_begin = m_data + ndx * sizeof(T);
+        const char* src_begin = dst_begin + sizeof(T);
+        const char* src_end = m_data + m_size * sizeof(T);
         realm::safe_copy_n(src_begin, src_end - src_begin, dst_begin);
     }
 
@@ -245,18 +172,6 @@ inline void BasicArray<T>::clear()
 }
 
 template <class T>
-bool BasicArray<T>::compare(const BasicArray<T>& a) const
-{
-    size_t n = size();
-    if (a.size() != n)
-        return false;
-    const T* data_1 = reinterpret_cast<const T*>(m_data);
-    const T* data_2 = reinterpret_cast<const T*>(a.m_data);
-    return realm::safe_equal(data_1, data_1 + n, data_2);
-}
-
-
-template <class T>
 size_t BasicArray<T>::calc_byte_len(size_t for_size, size_t) const
 {
     // FIXME: Consider calling `calc_aligned_byte_size(size)`
@@ -276,7 +191,7 @@ size_t BasicArray<T>::calc_item_count(size_t bytes, size_t) const noexcept
 }
 
 template <class T>
-size_t BasicArray<T>::find(T value, size_t begin, size_t end) const
+inline size_t BasicArray<T>::find_first(T value, size_t begin, size_t end) const
 {
     if (end == npos)
         end = m_size;
@@ -287,127 +202,18 @@ size_t BasicArray<T>::find(T value, size_t begin, size_t end) const
 }
 
 template <class T>
-inline size_t BasicArray<T>::find_first(T value, size_t begin, size_t end) const
+size_t BasicArrayNull<T>::find_first_null(size_t begin, size_t end) const
 {
-    return this->find(value, begin, end);
-}
-
-template <class T>
-void BasicArray<T>::find_all(IntegerColumn* result, T value, size_t add_offset, size_t begin, size_t end) const
-{
-    size_t first = begin - 1;
-    for (;;) {
-        first = this->find(value, first + 1, end);
-        if (first == not_found)
-            break;
-
-        Array::add_to_column(result, first + add_offset);
-    }
-}
-
-template <class T>
-size_t BasicArray<T>::count(T value, size_t begin, size_t end) const
-{
+    size_t sz = Node::size();
     if (end == npos)
-        end = m_size;
-    REALM_ASSERT(begin <= m_size && end <= m_size && begin <= end);
-    const T* data = reinterpret_cast<const T*>(m_data);
-    return std::count(data + begin, data + end, value);
-}
-
-#if 0
-// currently unused
-template <class T>
-double BasicArray<T>::sum(size_t begin, size_t end) const
-{
-    if (end == npos)
-        end = m_size;
-    REALM_ASSERT(begin <= m_size && end <= m_size && begin <= end);
-    const T* data = reinterpret_cast<const T*>(m_data);
-    return std::accumulate(data + begin, data + end, double(0));
-}
-#endif
-
-template <class T>
-template <bool find_max>
-bool BasicArray<T>::minmax(T& result, size_t begin, size_t end) const
-{
-    if (end == npos)
-        end = m_size;
-    if (m_size == 0)
-        return false;
-    REALM_ASSERT(begin < m_size && end <= m_size && begin < end);
-
-    T m = get(begin);
-    ++begin;
-    for (; begin < end; ++begin) {
-        T val = get(begin);
-        if (find_max ? val > m : val < m)
-            m = val;
+        end = sz;
+    REALM_ASSERT(begin <= sz && end <= sz && begin <= end);
+    while (begin != end) {
+        if (this->is_null(begin))
+            return begin;
+        begin++;
     }
-    result = m;
-    return true;
-}
-
-template <class T>
-bool BasicArray<T>::maximum(T& result, size_t begin, size_t end) const
-{
-    return minmax<true>(result, begin, end);
-}
-
-template <class T>
-bool BasicArray<T>::minimum(T& result, size_t begin, size_t end) const
-{
-    return minmax<false>(result, begin, end);
-}
-
-
-template <class T>
-ref_type BasicArray<T>::bptree_leaf_insert(size_t ndx, T value, TreeInsertBase& state)
-{
-    size_t leaf_size = size();
-    REALM_ASSERT_3(leaf_size, <=, REALM_MAX_BPNODE_SIZE);
-    if (leaf_size < ndx)
-        ndx = leaf_size;
-    if (REALM_LIKELY(leaf_size < REALM_MAX_BPNODE_SIZE)) {
-        insert(ndx, value);
-        return 0; // Leaf was not split
-    }
-
-    // Split leaf node
-    BasicArray<T> new_leaf(get_alloc());
-    new_leaf.create(); // Throws
-    if (ndx == leaf_size) {
-        new_leaf.add(value);
-        state.m_split_offset = ndx;
-    }
-    else {
-        // FIXME: Could be optimized by first resizing the target
-        // array, then copy elements with std::copy().
-        for (size_t i = ndx; i != leaf_size; ++i)
-            new_leaf.add(get(i));
-        truncate(ndx);
-        add(value);
-        state.m_split_offset = ndx + 1;
-    }
-    state.m_split_size = leaf_size + 1;
-    return new_leaf.get_ref();
-}
-
-template <class T>
-inline size_t BasicArray<T>::lower_bound(T value) const noexcept
-{
-    const T* begin = reinterpret_cast<const T*>(m_data);
-    const T* end = begin + size();
-    return std::lower_bound(begin, end, value) - begin;
-}
-
-template <class T>
-inline size_t BasicArray<T>::upper_bound(T value) const noexcept
-{
-    const T* begin = reinterpret_cast<const T*>(m_data);
-    const T* end = begin + size();
-    return std::upper_bound(begin, end, value) - begin;
+    return not_found;
 }
 
 template <class T>
@@ -422,45 +228,6 @@ inline size_t BasicArray<T>::calc_aligned_byte_size(size_t size)
     size_t aligned_byte_size = ((byte_size - 1) | 7) + 1; // 8-byte alignment
     return aligned_byte_size;
 }
-
-
-#ifdef REALM_DEBUG
-
-// LCOV_EXCL_START
-template <class T>
-void BasicArray<T>::to_dot(std::ostream& out, StringData title) const
-{
-    ref_type ref = get_ref();
-    if (title.size() != 0) {
-        out << "subgraph cluster_" << ref << " {\n";
-        out << " label = \"" << title << "\";\n";
-        out << " color = white;\n";
-    }
-
-    out << "n" << std::hex << ref << std::dec << "[shape=none,label=<";
-    out << "<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"4\"><TR>\n";
-
-    // Header
-    out << "<TD BGCOLOR=\"lightgrey\"><FONT POINT-SIZE=\"7\"> ";
-    out << "0x" << std::hex << ref << std::dec << "<BR/>";
-    out << "</FONT></TD>\n";
-
-    // Values
-    size_t n = m_size;
-    for (size_t i = 0; i != n; ++i)
-        out << "<TD>" << get(i) << "</TD>\n";
-
-    out << "</TR></TABLE>>];\n";
-
-    if (title.size() != 0)
-        out << "}\n";
-
-    to_dot_parent_edge(out);
-}
-// LCOV_EXCL_STOP
-
-#endif // REALM_DEBUG
-
 
 } // namespace realm
 

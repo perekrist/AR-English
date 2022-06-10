@@ -18,7 +18,7 @@
 
 #import <Realm/RLMConstants.h>
 
-/// A token originating from the Realm Object Server.
+/// A token originating from Atlas App Services.
 typedef NSString* RLMServerToken;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -43,10 +43,15 @@ extern NSString *const RLMSyncErrorDomain;
 extern NSString *const RLMSyncAuthErrorDomain;
 
 /**
- The error domain string for all SDK errors related to the permissions
- system and APIs.
+The error domain string for all SDK errors related to the Atlas App Services
+endpoint.
+*/
+extern NSString *const RLMAppErrorDomain;
+
+/**
+ The error domain string for all SDK errors related to flexible sync.
  */
-extern NSString *const RLMSyncPermissionErrorDomain;
+extern NSString *const RLMFlexibleSyncErrorDomain;
 
 /**
  An error related to a problem that might be reported by the synchronization manager
@@ -69,15 +74,15 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncError, RLMSyncErrorDomain) {
     /**
      An error that indicates the Realm needs to be reset.
 
-     A synced Realm may need to be reset because the Realm Object Server encountered an
+     A synced Realm may need to be reset because Atlas App Services encountered an
      error and had to be restored from a backup. If the backup copy of the remote Realm
      is of an earlier version than the local copy of the Realm, the server will ask the
      client to reset the Realm.
 
      The reset process is as follows: the local copy of the Realm is copied into a recovery
      directory for safekeeping, and then deleted from the original location. The next time
-     the Realm for that URL is opened, the Realm will automatically be re-downloaded from the
-     Realm Object Server, and can be used as normal.
+     the Realm for that partition value is opened, the Realm will automatically be re-downloaded from
+     Atlas App Services, and can be used as normal.
 
      Data written to the Realm after the local copy of the Realm diverged from the backup
      remote copy will be present in the local recovery copy of the Realm file. The
@@ -95,7 +100,7 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncError, RLMSyncErrorDomain) {
 
      If `+[RLMSyncSession immediatelyHandleError:]` is not called, the client reset process
      will be automatically carried out the next time the app is launched and the
-     `RLMSyncManager` singleton is accessed.
+     `RLMSyncManager` is accessed.
 
      The value for the `kRLMSyncPathOfRealmBackupCopyKey` key in the `userInfo` dictionary
      describes the path of the recovered copy of the Realm. This copy will not actually be
@@ -141,7 +146,21 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncError, RLMSyncErrorDomain) {
     RLMSyncErrorPermissionDeniedError   = 9,
 };
 
-/// An error which is related to authentication to a Realm Object Server.
+/**
+ An error which is related to a flexible sync operation.
+ */
+typedef RLM_ERROR_ENUM(NSInteger, RLMFlexibleSyncError, RLMFlexibleSyncErrorDomain) {
+    /// An error describing why the subscription set synchronization failed.
+    RLMFlexibleSyncErrorStatusError     = 1,
+
+    /// An error while committing a subscription write.
+    RLMFlexibleSyncErrorCommitSubscriptionSetError     = 2,
+
+    /// An error while refreshing the subscription set state.
+    RLMFlexibleSyncErrorRefreshSubscriptionSetError     = 3,
+};
+
+/// An error which is related to authentication to Atlas App Services.
 typedef RLM_ERROR_ENUM(NSInteger, RLMSyncAuthError, RLMSyncAuthErrorDomain) {
     /// An error that indicates that the response received from the authentication server was malformed.
     RLMSyncAuthErrorBadResponse                     = 1,
@@ -178,14 +197,24 @@ typedef RLM_ERROR_ENUM(NSInteger, RLMSyncAuthError, RLMSyncAuthErrorDomain) {
     /// An error that indicates the refresh token was invalid.
     RLMSyncAuthErrorInvalidAccessToken              = 615,
 
-    /// An error that indicates the permission offer is expired.
-    RLMSyncAuthErrorExpiredPermissionOffer          = 701,
-
-    /// An error that indicates the permission offer is ambiguous.
-    RLMSyncAuthErrorAmbiguousPermissionOffer        = 702,
-
     /// An error that indicates the file at the given path can't be shared.
     RLMSyncAuthErrorFileCannotBeShared              = 703,
 };
+
+/// An error which is related to authentication to Atlas App Services.
+typedef RLM_ERROR_ENUM(NSInteger, RLMAppError, RLMAppErrorDomain) {
+    /// An unknown error has occured
+    RLMAppErrorUnknown                        = -1,
+    
+    /// An error that indicates that the session is invalid
+    RLMAppErrorInvalidSession                 = 2,
+    
+    /// An error that indicates that the request sent to the server was invalid
+    RLMAppErrorBadRequest                     = 48,
+    
+    /// An error that indicates the user cannot be found
+    RLMAppErrorUserNotFound                   = 45
+};
+
 
 NS_ASSUME_NONNULL_END

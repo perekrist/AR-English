@@ -28,20 +28,28 @@ typedef RLM_CLOSED_ENUM(NSUInteger, RLMSyncStopPolicy) {
     RLMSyncStopPolicyAfterChangesUploaded,
 };
 
+
+@class RLMSchema;
+
 @interface RLMSyncConfiguration ()
 
-- (instancetype)initWithUser:(RLMSyncUser *)user
-                    realmURL:(NSURL *)url
-                   isPartial:(BOOL)isPartial
-                   urlPrefix:(nullable NSString *)urlPrefix
+- (instancetype)initWithUser:(RLMUser *)user
+              partitionValue:(nullable id<RLMBSON>)partitionValue
                   stopPolicy:(RLMSyncStopPolicy)stopPolicy
-         enableSSLValidation:(BOOL)enableSSLValidation
-             certificatePath:(nullable NSURL *)certificatePath;
+             clientResetMode:(RLMClientResetMode)clientResetMode
+           notifyBeforeReset:(nullable RLMClientResetBeforeBlock)beforeResetBlock
+            notifyAfterReset:(nullable RLMClientResetAfterBlock)afterResetBlock;
+
+- (instancetype)initWithUser:(RLMUser *)user
+                  stopPolicy:(RLMSyncStopPolicy)stopPolicy
+          enableFlexibleSync:(BOOL)enableFlexibleSync;
 
 @property (nonatomic, readwrite) RLMSyncStopPolicy stopPolicy;
 
 // Internal-only APIs
 @property (nullable, nonatomic) NSURL *customFileURL;
+
+@property (nonatomic, readonly) BOOL enableFlexibleSync;
 
 @end
 

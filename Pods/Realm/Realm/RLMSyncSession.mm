@@ -18,13 +18,16 @@
 
 #import "RLMSyncSession_Private.hpp"
 
+#import "RLMApp.h"
 #import "RLMRealm_Private.hpp"
 #import "RLMSyncConfiguration_Private.hpp"
-#import "RLMSyncUser_Private.hpp"
+#import "RLMUser_Private.hpp"
+#import "RLMSyncManager_Private.hpp"
 #import "RLMSyncUtil_Private.hpp"
 
-#import "sync/async_open_task.hpp"
-#import "sync/sync_session.hpp"
+#import <realm/object-store/sync/app.hpp>
+#import <realm/object-store/sync/async_open_task.hpp>
+#import <realm/object-store/sync/sync_session.hpp>
 
 using namespace realm;
 
@@ -136,16 +139,19 @@ static RLMSyncConnectionState convertConnectionState(SyncSession::ConnectionStat
     return nil;
 }
 
-- (RLMSyncUser *)parentUser {
+- (RLMUser *)parentUser {
     if (auto session = _session.lock()) {
-        return [[RLMSyncUser alloc] initWithSyncUser:session->user()];
+        if (auto app = session->user()->sync_manager()->app().lock()) {
+            auto rlmApp = [RLMApp appWithId:@(app->config().app_id.data())];
+            return [[RLMUser alloc] initWithUser:session->user() app:rlmApp];
+        }
     }
     return nil;
 }
 
 - (RLMSyncSessionState)state {
     if (auto session = _session.lock()) {
-        if (session->state() == SyncSession::PublicState::Inactive) {
+        if (session->state() == SyncSession::State::Inactive) {
             return RLMSyncSessionStateInactive;
         }
         return RLMSyncSessionStateActive;
@@ -199,8 +205,8 @@ static RLMSyncConnectionState convertConnectionState(SyncSession::ConnectionStat
     if (auto session = _session.lock()) {
         dispatch_queue_t queue = RLMSyncSession.notificationsQueue;
         auto notifier_direction = (direction == RLMSyncProgressDirectionUpload
-                                   ? SyncSession::NotifierType::upload
-                                   : SyncSession::NotifierType::download);
+                                   ? SyncSession::ProgressDirection::upload
+                                   : SyncSession::ProgressDirection::download);
         bool is_streaming = (mode == RLMSyncProgressModeReportIndefinitely);
         uint64_t token = session->register_progress_notifier([=](uint64_t transferred, uint64_t transferrable) {
             dispatch_async(queue, ^{
@@ -212,12 +218,13 @@ static RLMSyncConnectionState convertConnectionState(SyncSession::ConnectionStat
     return nil;
 }
 
-+ (void)immediatelyHandleError:(RLMSyncErrorActionToken *)token {
++ (void)immediatelyHandleError:(RLMSyncErrorActionToken *)token syncManager:(RLMSyncManager *)syncManager {
     if (!token->_isValid) {
         return;
     }
     token->_isValid = NO;
-    SyncManager::shared().immediately_run_file_actions(std::move(token->_originalPath));
+
+    [syncManager syncManager]->immediately_run_file_actions(std::move(token->_originalPath));
 }
 
 + (nullable RLMSyncSession *)sessionForRealm:(RLMRealm *)realm {
@@ -229,6 +236,21 @@ static RLMSyncConnectionState convertConnectionState(SyncSession::ConnectionStat
         return [[RLMSyncSession alloc] initWithSyncSession:session];
     }
     return nil;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:
+            @"<RLMSyncSession: %p> {\n"
+            "\tstate = %d;\n"
+            "\tconnectionState = %d;\n"
+            "\trealmURL = %@;\n"
+            "\tuser = %@;\n"
+            "}",
+            (__bridge void *)self,
+            static_cast<int>(self.state),
+            static_cast<int>(self.connectionState),
+            self.realmURL,
+            self.parentUser.identifier];
 }
 
 @end

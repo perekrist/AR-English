@@ -48,7 +48,6 @@ struct TestView: View {
                                     Circle().stroke(Color.blue.opacity(0.5), lineWidth: 4).frame(width: 25, height: 25)
                                 }
                             }
-                            Spacer()
                             Text(self.test.answers[i])
                                 .font(.title)
                             Spacer()

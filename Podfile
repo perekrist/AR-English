@@ -2,13 +2,12 @@
 # platform :ios, '9.0'
 
 target 'AR-English' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for AR-English
-pod 'RealmSwift'
-pod 'SwiftyJSON'
-pod 'SDWebImageSwiftUI'
-pod 'Alamofire'
+ 
+	pod 'RealmSwift', :modular_headers => true
+	pod 'Realm', :modular_headers => true
+	pod 'SwiftyJSON'
+	pod 'SDWebImage', :modular_headers => true
+	pod 'SDWebImageSwiftUI', :modular_headers => true
+	pod 'Alamofire'
 
 end
